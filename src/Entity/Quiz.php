@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuizRepository::class)]
 class Quiz
@@ -17,10 +18,15 @@ class Quiz
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom du quiz ne peut pas être vide.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "Le nom du quiz ne peut pas dépasser {{ limit }} caractères."
+    )]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $max_time = null;
+    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
+    private ?\DateTimeImmutable $max_time = null;
 
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -42,14 +48,13 @@ class Quiz
     #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'id_quiz')]
     private Collection $questions;
 
-    #[ORM\Column(length: 255, type: "string", enumType: Difficulty::class)]
+    #[ORM\Column(length: 255, type: "string")]
     private ?string $difficulty = null;
 
     public function __construct()
     {
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
-        $this->difficulty = Difficulty::Easy;
     }
 
     public function getId(): ?int
@@ -176,11 +181,4 @@ class Quiz
 
         return $this;
     }
-}
-
-enum Difficulty: string
-{
-    case Easy = 'easy';
-    case Medium = 'medium';
-    case Hard = 'hard';
 }

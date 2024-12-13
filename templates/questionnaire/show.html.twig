@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuizController!{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Reset de base pour assurer la cohérence entre les navigateurs */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles pour le body */
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: #faccff; /* Couleur de fond claire */
+    color: #212529; /* Texte principal */
+    line-height: 2;
+    padding: 20px;
+}
+
+/* Header principal (optionnel) */
+header {
+    background: #007bff; /* Couleur primaire de Bootstrap */
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Section principale */
+main {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+/* Liens */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Boutons personnalisés */
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Pied de page */
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    header {
+        padding: 10px 15px;
+    }
+}
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div>
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at <code>C:/Users/maxen/Documents/POLYTECH/PROJ531/PROJ531_Quiz/src/Controller/QuestionnaireController.php</code></li>
+            <li>Your template at <code>C:/Users/maxen/Documents/POLYTECH/PROJ531/PROJ531_Quiz/templates/questionnaire/index.html.twig</code></li>
+        </ul>
+    </div>
+{% endblock %}

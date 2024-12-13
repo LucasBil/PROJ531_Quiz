@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
 class Question
@@ -17,9 +18,16 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotBlank(message: "Les points ne peuvent pas être vides.")]
+    #[Assert\Positive(message: "Les points doivent être un nombre positif.")]
     private ?int $points = null;
 
     #[ORM\Column(length: 510)]
+    #[Assert\NotBlank(message: "L'énoncé de la question ne peut pas être vide.")]
+    #[Assert\Length(
+        max: 510,
+        maxMessage: "L'énoncé de la question ne peut pas dépasser {{ limit }} caractères."
+    )]
     private ?string $statement = null;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
