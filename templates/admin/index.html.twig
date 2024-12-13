@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Quiz{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .bg-primary-purple {
+            background-color: #8c52ff;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="d-flex bg-primary-purple p-2 m-2 rounded text-white">
+        <div class="row">
+            <div class="col">
+                <p>Question :</p>
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <img src="{{ asset('assets/up.svg') }}" alt="Up">
+                <img src="{{ asset('assets/down.svg') }}" alt="Down">
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center my-2">
+        <div class="row">
+            <div class="col-5">
+                <hr>
+            </div>
+            <div class="col">
+                <button type="button" class="btn">Ajouter +</button>
+            </div>
+            <div class="col-5">
+                <hr>
+            </div>
+        </div>
+    </div>
+{% endblock %}
