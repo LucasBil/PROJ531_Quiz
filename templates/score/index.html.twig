@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ScoreController!{% endblock %}
+
+{% block body %}
+<div class="score d-flex justify-content-around">
+    <div class="score-gauche w-25">
+        <div class="barre-haut d-flex gap-3">
+            <h4>Quiz</h4>
+            <hr class="w-75"/>
+            <i>Y</i>
+        </div>
+
+        <div class="quizzes d-flex flex-column gap-3">{% for quiz in answers %}
+            <div class="card border-primary" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ quiz.name }}</h5>
+                    <p class="card-text">{{ quiz.score }}/20</p>
+                </div>
+            </div>
+        {% endfor %}</div>
+    
+        <div class="barre-bas d-flex gap-3">
+            <hr class="w-50"/>
+            <button>Voir plus v</button>
+        </div>
+    </div>
+    <div class="score-milieu w-25 card border-primary d-flex flex-column align-items-center" style="width: 18rem;">
+        <div class="card-body d-flex flex-column align-items-center">
+            <h5 class="card-title">Moyenne :</h5>
+            <p class="d-flex align-items-center justify-content-center fs-2 fw-bold" style="
+                border:solid 4px blue; 
+                border-radius:50%; 
+                width:80px; 
+                height:80px; 
+            ">{{ score }}</p>
+            <h5 class="card-title">Temps moyen :</h5>
+            <p class="card-text">{{ time }}</p>
+        </div>
+    </div>
+    <div class="score-droite w-25">
+    
+    </div>
+</div>
+{% endblock %}

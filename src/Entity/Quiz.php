@@ -42,7 +42,7 @@ class Quiz
     #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'id_quiz')]
     private Collection $questions;
 
-    #[ORM\Column(length: 255, type: "string", enumType: Difficulty::class)]
+    #[ORM\Column(length: 255, type: "string")]
     private ?string $difficulty = null;
 
     public function __construct()

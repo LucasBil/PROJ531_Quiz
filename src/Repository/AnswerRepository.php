@@ -31,6 +31,17 @@ class AnswerRepository extends ServiceEntityRepository
     //        ;
     //    }
 
+    public function getUserAnswersWithJoinedQuiz($userId) {
+        return $this->createQueryBuilder('a')
+            ->join('a.id_quiz', 'q')
+            ->where('a.id_user = :userId')
+            ->setParameter('userId', $userId)
+            ->select('q.name, a.score, a.time, a.date_time')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     //    public function findOneBySomeField($value): ?Answer
     //    {
     //        return $this->createQueryBuilder('a')
