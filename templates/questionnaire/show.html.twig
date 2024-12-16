@@ -1,131 +1,131 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello QuizController!{% endblock %}
-
-{% block stylesheets %}
-    <style>
-    /* Configuration de base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: linear-gradient(to bottom right, #6a11cb, #2575fc);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 1rem;
-}
-
-/* Header */
-.header {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 1rem 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #fff;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-/* Carte du quiz */
-.quiz-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-    animation: fadeIn 0.5s ease-out;
-}
-
-.quiz-title {
-    color: #6a11cb;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.quiz-question {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-/* Boutons de réponse */
-.answers {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-.answer-button {
-    background: #2575fc;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.answer-button:hover {
-    background: #6a11cb;
-    transform: scale(1.05);
-}
-
-.answer-button:focus {
-    outline: 2px solid #ffcc00;
-}
-
-/* Footer */
-.footer {
-    margin-top: 2rem;
-    color: #fff;
-    font-size: 0.9rem;
-    text-align: center;
-}
-
-/* Responsiveness */
-@media (max-width: 600px) {
-    .answers {
-        grid-template-columns: 1fr;
-    }
-
-    .quiz-card {
-        padding: 1.5rem;
-    }
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-    </style>
-{% endblock %}
+{% block title %}Quiz: {{ quiz.name }}{% endblock %}
 
 {% block body %}
-    <div>
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code>C:/Users/maxen/Documents/POLYTECH/PROJ531/PROJ531_Quiz/src/Controller/QuestionnaireController.php</code></li>
-            <li>Your template at <code>C:/Users/maxen/Documents/POLYTECH/PROJ531/PROJ531_Quiz/templates/questionnaire/index.html.twig</code></li>
-        </ul>
-    </div>
+<style>
+    /* Configuration de base */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 1rem;
+    }
+
+    /* Header */
+    .quiz-container {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 1rem 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: #fff;
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .quiz-title {
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Carte du quiz */
+    .quiz-card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .quiz-question {
+        color: #6a11cb;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .answers {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .answer-button {
+        background: #2575fc;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .answer-button:hover {
+        background: #6a11cb;
+        transform: scale(1.05);
+    }
+
+    .answer-button:focus {
+        outline: 2px solid #ffcc00;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 600px) {
+        .answers {
+            grid-template-columns: 1fr;
+        }
+
+        .quiz-card {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="quiz-container">
+    <h1 class="quiz-title">{{ quiz.name }}</h1>
+    <p>Difficulté : {{ quiz.difficulty }}</p>
+
+    {# Itération sur les questions du quiz #}
+    {% for question in quiz.questions %}
+        <div class="quiz-card">
+            <h2 class="quiz-question">{{ loop.index }}. {{ question.statement }}</h2>
+            <p>Points : {{ question.points }}</p>
+
+            {# Itération sur les réponses possibles de chaque question #}
+            <div class="answers">
+                {% for answer in question.possibleAnswers %}
+                    <button class="answer-button">{{ answer.text }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
