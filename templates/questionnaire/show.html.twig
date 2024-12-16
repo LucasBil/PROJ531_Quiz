@@ -4,84 +4,116 @@
 
 {% block stylesheets %}
     <style>
-        /* Reset de base pour assurer la cohérence entre les navigateurs */
+    /* Configuration de base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Styles pour le body */
 body {
-    font-family: 'Trebuchet MS', sans-serif;
-    background-color: #faccff; /* Couleur de fond claire */
-    color: #212529; /* Texte principal */
-    line-height: 2;
-    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
 }
 
-/* Header principal (optionnel) */
-header {
-    background: #007bff; /* Couleur primaire de Bootstrap */
-    color: white;
-    padding: 15px 20px;
+/* Header */
+.header {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
     text-align: center;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
-/* Section principale */
-main {
-    background: white;
-    padding: 20px;
+/* Carte du quiz */
+.quiz-card {
+    background: #fff;
+    border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-}
-
-/* Liens */
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Boutons personnalisés */
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-/* Pied de page */
-footer {
-    margin-top: 20px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
     text-align: center;
-    font-size: 0.9em;
-    color: #6c757d;
+    animation: fadeIn 0.5s ease-out;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
+.quiz-title {
+    color: #6a11cb;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.quiz-question {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Boutons de réponse */
+.answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.answer-button {
+    background: #2575fc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.answer-button:hover {
+    background: #6a11cb;
+    transform: scale(1.05);
+}
+
+.answer-button:focus {
+    outline: 2px solid #ffcc00;
+}
+
+/* Footer */
+.footer {
+    margin-top: 2rem;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .answers {
+        grid-template-columns: 1fr;
     }
 
-    main {
-        padding: 15px;
+    .quiz-card {
+        padding: 1.5rem;
     }
+}
 
-    header {
-        padding: 10px 15px;
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
