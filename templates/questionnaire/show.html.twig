@@ -122,7 +122,7 @@
             {# Itération sur les réponses possibles de chaque question #}
             <div class="answers">
                 {% for answer in question.possibleAnswers %}
-                    <button class="answer-button">{{ answer.text }}</button>
+                    <button class="answer-button">{{ answer.value }}</button>
                 {% endfor %}
             </div>
         </div>
