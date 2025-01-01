@@ -19,8 +19,8 @@ class Quiz
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $max_time = null;
+    #[ORM\Column(type: Types::DATEINTERVAL, nullable: true)]
+    private ?\DateInterval $max_time = null;
 
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -42,14 +42,13 @@ class Quiz
     #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'id_quiz')]
     private Collection $questions;
 
-    #[ORM\Column(length: 255, type: "string", enumType: Difficulty::class)]
+    #[ORM\Column(length: 255, type: "string")]
     private ?string $difficulty = null;
 
     public function __construct()
     {
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
-        $this->difficulty = Difficulty::Easy;
     }
 
     public function getId(): ?int
@@ -69,12 +68,12 @@ class Quiz
         return $this;
     }
 
-    public function getMaxTime(): ?\DateTimeInterface
+    public function getMaxTime(): ?\DateInterval
     {
         return $this->max_time;
     }
 
-    public function setMaxTime(?\DateTimeInterface $max_time): static
+    public function setMaxTime(?\DateInterval $max_time): static
     {
         $this->max_time = $max_time;
 
@@ -176,11 +175,4 @@ class Quiz
 
         return $this;
     }
-}
-
-enum Difficulty: string
-{
-    case Easy = 'easy';
-    case Medium = 'medium';
-    case Hard = 'hard';
 }
