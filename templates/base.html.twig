@@ -3,32 +3,69 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-
-        <!-- Favicon -->
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-              rel="stylesheet" 
-              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-              crossorigin="anonymous">
-
-        <!-- Custom Stylesheets -->
-        {% block stylesheets %}
-        {% endblock %}
-
-
-        <!-- JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-                crossorigin="anonymous"></script>
-        
-        {% block javascripts %}
-        {% endblock %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     </head>
-    <body>
-        <main>
+    {% block stylesheets %}
+    {% endblock %}
+    <style>
+        .bg-primary-purple {
+            background-color: #8c52ff;
+            color: white;
+        }
+        .bg-secondary-purple {
+            background-color: #b794fd;
+            color: white;
+
+        }
+        .input-search {
+            border-color: #b794fd;
+        }
+        .input-search::placeholder{
+            color: white;
+        }
+    </style>
+    <body style="min-height: 100vh" class="d-flex flex-column">
+        <header class="bg-primary-purple p-2 d-flex justify-content-between align-items-cente mb-2 px-4 sticky-top">
+            <div style="width: 50%;" class="d-flex align-items-center gap-3">
+                <a style="text-wrap: nowrap; color: white" class="btn" href="{{ path('app_admin') }}">PROJ531-QUIZ</a>
+                <div class="input-group">
+                    <button class="btn bg-secondary-purple d-flex justify-content-center align-items-center" type="button">
+                        <!-- Search icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        <!-- --- -->
+                    </button>
+                    <input type="text" class="form-control bg-secondary-purple input-search" placeholder="Rechercher">
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                {% if app.user %}
+                    <p class="mb-0 py-2 px-4 rounded bg-secondary-purple">{{ app.user.username }}</p>
+                    <a class="btn" style="color: white" href="{{ path('app_logout') }}">Déconnexion</a>
+                {% else %}
+                    <a class="btn" style="color: white" href="{{ path('app_login') }}">Connexion</a>
+                {% endif %}
+            </div>
+        </header>
+
+        <section class="flex-grow-1">
             {% block body %}{% endblock %}
-        </main>
+        </section>
+
+        <footer class="bg-primary-purple p-2 d-flex justify-content-around mt-2">
+            <div class="d-flex flex-column">
+                <span>© Copyright 2024</span>
+                <span>Corentin CAMPILLO & Louis AMOUDRUZ & Maxence AMBERT & Lucas BILLY</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <span>Polytech Annecy-Chambery 2024</span>
+            </div>
+        </footer>
     </body>
+    {% block javascripts %}
+    {% endblock %}
 </html>

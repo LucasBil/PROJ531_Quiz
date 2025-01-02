@@ -25,8 +25,8 @@ class Quiz
     )]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TIME_IMMUTABLE, nullable: true)]
-    private ?\DateTimeImmutable $max_time = null;
+    #[ORM\Column(type: Types::DATEINTERVAL, nullable: true)]
+    private ?\DateInterval $max_time = null;
 
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -74,12 +74,12 @@ class Quiz
         return $this;
     }
 
-    public function getMaxTime(): ?\DateTimeInterface
+    public function getMaxTime(): ?\DateInterval
     {
         return $this->max_time;
     }
 
-    public function setMaxTime(?\DateTimeInterface $max_time): static
+    public function setMaxTime(?\DateInterval $max_time): static
     {
         $this->max_time = $max_time;
 
@@ -181,4 +181,11 @@ class Quiz
 
         return $this;
     }
+}
+
+enum Difficulty: string
+{
+    case Easy = 'easy';
+    case Medium = 'medium';
+    case Hard = 'hard';
 }
