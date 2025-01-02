@@ -36,31 +36,8 @@ class AppFixtures extends Fixture
 
         // Fetch data
         foreach (array_keys($entities) as $entity) {
-            $objects = $this->getData($entity);
+            $objects = $this->getData($entity, $entities);
             $entities[$entity] = $objects;
-        }
-
-        // Make join
-        $admin = array_filter($entities[User::class], function (User $user) {
-            return in_array('ROLE_ADMIN', $user->getRoles());
-        })[0];
-        foreach ($entities[Quiz::class] as $quiz) {
-            $indexTheme = random_int(0, count($entities[Theme::class])-1);
-            $theme = $entities[Theme::class][$indexTheme];
-            $quiz->setUser($admin);
-            $quiz->setTheme($theme);
-        }
-
-        foreach ($entities[Question::class] as $question) {
-            $indexQuiz = random_int(0, count($entities[Quiz::class])-1);
-            $indexQuestionType = random_int(0, count($entities[QuestionType::class])-1);
-            $question->setQuiz($entities[Quiz::class][$indexQuiz]);
-            $question->setType($entities[QuestionType::class][$indexQuestionType]);
-        }
-
-        foreach ($entities[PossibleAnswer::class] as $possibleAnswer) {
-            $indexQuestion = random_int(0, count($entities[Question::class])-1);
-            $possibleAnswer->setQuestion($entities[Question::class][$indexQuestion]);
         }
 
         foreach ($entities[Answer::class] as $answer) {
@@ -79,7 +56,7 @@ class AppFixtures extends Fixture
         }
     }
 
-    public function getData(string $className): array {
+    public function getData(string $className, array $entities): array {
         $objects = [];
         $name = str_replace('App\Entity\\', '', $className);
         $json = file_get_contents(__DIR__ . "\json\\". lcfirst($name) .".json");
@@ -99,7 +76,7 @@ class AppFixtures extends Fixture
                 // Vérifier si le JSON contient une valeur pour cette propriété
                 if (array_key_exists($property, $json_object)) {
                     // Appeler le setter avec la valeur correspondante
-                    $value = $this->getValueProperty($object, $json_object, $property, $className);
+                    $value = $this->getValueProperty($object, $json_object, $property, $className, $entities);
                     $object->$setter($value);
                 }
             }
@@ -108,7 +85,7 @@ class AppFixtures extends Fixture
         return $objects;
     }
 
-    function getValueProperty($object, $json_object, string $property, string $className) : mixed {
+    function getValueProperty($object, $json_object, string $property, string $className, array $entities) : mixed {
         $value = $json_object[$property];
 
         switch ($className) {
@@ -117,11 +94,27 @@ class AppFixtures extends Fixture
                     $value = $this->hasher->hashPassword($object, $value);
                 }
                 break;
+            case Question::class:
+                if ($property == "quiz") {
+                    $value = $entities[Quiz::class][$value];
+                } elseif ($property == "type") {
+                    $value = $entities[QuestionType::class][$value];
+                }
+                break;
             case Quiz::class:
                 if ($property == "difficulty") {
                     $value = Difficulty::tryFrom($value);
                 } elseif ($property == "maxTime") {
                     $value = DateInterval::createFromDateString($value);
+                } elseif ($property == "user") {
+                    $value = $entities[User::class][$value];
+                } elseif ($property == "theme") {
+                    $value = $entities[Theme::class][$value];
+                }
+                break;
+            case PossibleAnswer::class:
+                if ($property == "question") {
+                    $value = $entities[Question::class][$value];
                 }
                 break;
             case Answer::class:

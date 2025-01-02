@@ -1,386 +1,632 @@
 [
   {
     "statement" : "Les rhinocéros ont combien de pattes ?",
-    "points" : 2
+    "points" : 2,
+    "type": 0,
+    "quiz" : 0
   },
   {
-    "statement" : "Quelle est la couleur du ciel ?",
-    "points" : 1
+    "statement" : "Quel est le poids moyen d'un rhinocéros adulte ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 0
   },
   {
-    "statement" : "Combien de continents y a-t-il sur Terre ?",
-    "points" : 3
+    "statement" : "Quelle est la durée de vie moyenne d'un rhinocéros ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 0
   },
   {
-    "statement" : "Quel est le plus grand océan du monde ?",
-    "points" : 2
+    "statement" : "Combien d'espèces de rhinocéros existent encore aujourd'hui ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 0
+  },
+  {
+    "statement" : "Les rhinocéros sont-ils herbivores ou carnivores ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 0
+  },
+  {
+    "statement" : "Quels sont les principaux prédateurs des animaux de la savane ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 1
+  },
+  {
+    "statement" : "Quelle est la vitesse maximale d'un guépard ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 1
+  },
+  {
+    "statement" : "Combien de temps un éléphant peut-il vivre ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 1
+  },
+  {
+    "statement" : "Les lions vivent-ils en groupe ou seuls ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 1
+  },
+  {
+    "statement" : "Quelle plante est souvent utilisée pour traiter les brûlures ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 2
+  },
+  {
+    "statement" : "Quelle plante est connue pour ses propriétés calmantes ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 2
+  },
+  {
+    "statement" : "Quelle plante est utilisée pour traiter les maux de tête ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 2
+  },
+  {
+    "statement" : "Le thé vert est-il bénéfique pour la santé ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 2
+  },
+  {
+    "statement" : "Quelle est la dernière innovation en matière de smartphones ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 3
+  },
+  {
+    "statement" : "Quel est le dernier modèle de voiture électrique ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 3
+  },
+  {
+    "statement" : "Quelle technologie est utilisée dans les casques de réalité virtuelle ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 3
+  },
+  {
+    "statement" : "Les drones sont-ils utilisés dans l'agriculture ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 3
+  },
+  {
+    "statement" : "Quelle est la bataille la plus célèbre de Napoléon ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 4
+  },
+  {
+    "statement" : "En quelle année a eu lieu la bataille de Hastings ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 4
+  },
+  {
+    "statement" : "Qui a mené les forces alliées lors du débarquement en Normandie ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 4
+  },
+  {
+    "statement" : "La guerre de Cent Ans a duré combien de temps ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 4
+  },
+  {
+    "statement" : "Quelle est la découverte scientifique la plus importante du XXe siècle ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 5
+  },
+  {
+    "statement" : "Qui a découvert la théorie de la relativité ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 5
+  },
+  {
+    "statement" : "Quelle est la formule chimique de l'eau ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 5
+  },
+  {
+    "statement" : "Les plantes produisent-elles de l'oxygène ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 5
+  },
+  {
+    "statement" : "Qui a peint la Joconde ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 6
+  },
+  {
+    "statement" : "Quel est le style artistique de Vincent van Gogh ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 6
+  },
+  {
+    "statement" : "Quelle est la sculpture la plus célèbre de Michel-Ange ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 6
+  },
+  {
+    "statement" : "Le Louvre est-il un musée ou un palais ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 6
+  },
+  {
+    "statement" : "Quel instrument de musique a six cordes ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 7
+  },
+  {
+    "statement" : "Le piano est-il un instrument à cordes ou à percussion ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 7
+  },
+  {
+    "statement" : "Quel instrument est souvent utilisé dans le jazz ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 7
+  },
+  {
+    "statement" : "La flûte est-elle un instrument à vent ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 7
+  },
+  {
+    "statement" : "Qui a écrit 'Les Misérables' ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 8
+  },
+  {
+    "statement" : "Quel est le genre littéraire de '1984' de George Orwell ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 8
+  },
+  {
+    "statement" : "Qui est l'auteur de 'Don Quichotte' ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 8
+  },
+  {
+    "statement" : "Shakespeare a-t-il écrit 'Hamlet' ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 8
+  },
+  {
+    "statement" : "Quel est le record du monde du 100 mètres ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 9
+  },
+  {
+    "statement" : "Combien de joueurs y a-t-il dans une équipe de football ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 9
+  },
+  {
+    "statement" : "Quel pays a remporté la Coupe du Monde de la FIFA en 2018 ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 9
+  },
+  {
+    "statement" : "Le basket-ball se joue-t-il avec un ballon rond ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 9
   },
   {
     "statement" : "Quelle est la capitale de la France ?",
-    "points" : 1
+    "points" : 3,
+    "type": 1,
+    "quiz" : 10
   },
   {
-    "statement" : "Quel est le plus haut sommet du monde ?",
-    "points" : 3
+    "statement" : "Quel est le monument le plus célèbre de New York ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 10
   },
   {
-    "statement" : "Quelle est la langue officielle du Brésil ?",
-    "points" : 2
+    "statement" : "Quel pays est connu pour ses pyramides ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 10
   },
   {
-    "statement" : "Quel est le plus long fleuve du monde ?",
-    "points" : 3
+    "statement" : "La Tour Eiffel est-elle à Paris ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 10
   },
   {
-    "statement" : "Quelle est la monnaie utilisée au Japon ?",
-    "points" : 2
+    "statement" : "Quel est le plat traditionnel japonais à base de poisson cru ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 11
   },
   {
-    "statement" : "Quel est le plus grand désert du monde ?",
-    "points" : 3
+    "statement" : "La pizza est-elle d'origine italienne ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 11
   },
   {
-    "statement" : "Quelle est la planète la plus proche du Soleil ?",
-    "points" : 2
+    "statement" : "Quel est le plat national de l'Espagne ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 11
   },
   {
-    "statement" : "Quel est le plus grand pays du monde par superficie ?",
-    "points" : 3
+    "statement" : "Le couscous est-il un plat marocain ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 11
   },
   {
-    "statement" : "Quel est le plus petit pays du monde ?",
-    "points" : 2
+    "statement" : "Quel est le plus grand animal marin ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 12
   },
   {
-    "statement" : "Quelle est la langue la plus parlée au monde ?",
-    "points" : 3
+    "statement" : "Les dauphins sont-ils des mammifères ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 12
   },
   {
-    "statement" : "Quel est le plus grand lac d'eau douce du monde ?",
-    "points" : 3
+    "statement" : "Combien de temps les tortues marines peuvent-elles vivre ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 12
   },
   {
-    "statement" : "Quelle est la capitale de l'Australie ?",
-    "points" : 2
+    "statement" : "Les requins sont-ils des poissons ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 12
   },
   {
-    "statement" : "Quel est le plus grand mammifère terrestre ?",
-    "points" : 2
+    "statement" : "Quelle est la plus grande forêt tropicale du monde ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 13
   },
   {
-    "statement" : "Quelle est la capitale de l'Italie ?",
-    "points" : 1
+    "statement" : "Les forêts tropicales sont-elles importantes pour l'oxygène ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 13
   },
   {
-    "statement" : "Quel est le plus grand pays d'Amérique du Sud ?",
-    "points" : 2
+    "statement" : "Combien d'espèces vivent dans les forêts tropicales ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 13
   },
   {
-    "statement" : "Quelle est la capitale de l'Espagne ?",
-    "points" : 1
+    "statement" : "Les forêts tropicales sont-elles en danger ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 13
   },
   {
-    "statement" : "Quel est le plus grand océan de la Terre ?",
-    "points" : 2
+    "statement" : "Quel est le gadget technologique le plus populaire en 2023 ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 14
   },
   {
-    "statement" : "Quelle est la capitale de l'Allemagne ?",
-    "points" : 1
+    "statement" : "Les smartphones sont-ils des gadgets technologiques ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 14
   },
   {
-    "statement" : "Quel est le plus grand désert chaud du monde ?",
-    "points" : 3
+    "statement" : "Quelle entreprise a lancé le premier smartphone pliable ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 14
   },
   {
-    "statement" : "Quelle est la capitale du Canada ?",
-    "points" : 2
+    "statement" : "Les montres intelligentes sont-elles des gadgets technologiques ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 14
   },
   {
-    "statement" : "Quel est le plus grand pays d'Afrique ?",
-    "points" : 3
+    "statement" : "Quelle est la civilisation ancienne la plus connue ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 15
   },
   {
-    "statement" : "Quelle est la capitale de la Chine ?",
-    "points" : 1
+    "statement" : "Les Égyptiens anciens ont-ils construit des pyramides ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 15
   },
   {
-    "statement" : "Quel est le plus grand pays d'Asie ?",
-    "points" : 3
+    "statement" : "Quelle civilisation ancienne a inventé l'écriture ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 15
   },
   {
-    "statement" : "Quelle est la capitale de la Russie ?",
-    "points" : 1
+    "statement" : "Les Romains anciens ont-ils conquis la Grèce ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 15
   },
   {
-    "statement" : "Quel est le plus grand pays d'Europe ?",
-    "points" : 3
+    "statement" : "Quelle est la théorie scientifique la plus célèbre d'Einstein ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 16
   },
   {
-    "statement" : "Quelle est la capitale de l'Inde ?",
-    "points" : 1
+    "statement" : "La théorie de la relativité est-elle une théorie scientifique ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 16
   },
   {
-    "statement" : "Quel est le plus grand pays d'Océanie ?",
-    "points" : 2
+    "statement" : "Quelle est la théorie scientifique qui explique l'évolution ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 16
   },
   {
-    "statement" : "Quelle est la capitale du Brésil ?",
-    "points" : 1
+    "statement" : "La théorie du Big Bang explique-t-elle l'origine de l'univers ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 16
   },
   {
-    "statement" : "Quel est le plus grand pays du Moyen-Orient ?",
-    "points" : 3
+    "statement" : "Quel est le mouvement artistique de Picasso ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 17
   },
   {
-    "statement" : "Quelle est la capitale de l'Argentine ?",
-    "points" : 1
+    "statement" : "Le cubisme est-il un mouvement artistique ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 17
   },
   {
-    "statement" : "Quel est le plus grand pays d'Amérique du Nord ?",
-    "points" : 3
+    "statement" : "Quel mouvement artistique est associé à Monet ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 17
   },
   {
-    "statement" : "Quelle est la capitale du Mexique ?",
-    "points" : 1
+    "statement" : "Le surréalisme est-il un mouvement artistique ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 17
   },
   {
-    "statement" : "Quel est le plus grand pays des Caraïbes ?",
-    "points" : 2
+    "statement" : "Quel genre musical est associé à Elvis Presley ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 18
   },
   {
-    "statement" : "Quelle est la capitale de l'Égypte ?",
-    "points" : 1
+    "statement" : "Le rock est-il un genre musical ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 18
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Afrique de l'Ouest ?",
-    "points" : 3
+    "statement" : "Quel genre musical est associé à Louis Armstrong ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 18
   },
   {
-    "statement" : "Quelle est la capitale de l'Afrique du Sud ?",
-    "points" : 1
+    "statement" : "Le jazz est-il un genre musical ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 18
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Afrique de l'Est ?",
-    "points" : 3
+    "statement" : "Quel est le livre le plus célèbre de J.K. Rowling ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 19
   },
   {
-    "statement" : "Quelle est la capitale de la Turquie ?",
-    "points" : 1
+    "statement" : "Harry Potter est-il une série de livres ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 19
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Afrique centrale ?",
-    "points" : 3
+    "statement" : "Quel est le livre le plus célèbre de Tolkien ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 19
   },
   {
-    "statement" : "Quelle est la capitale de l'Arabie Saoudite ?",
-    "points" : 1
+    "statement" : "Le Seigneur des Anneaux est-il une série de livres ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 19
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Afrique du Nord ?",
-    "points" : 3
+    "statement" : "Quel est l'événement sportif le plus regardé au monde ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 20
   },
   {
-    "statement" : "Quelle est la capitale de l'Iran ?",
-    "points" : 1
+    "statement" : "Les Jeux Olympiques sont-ils un événement sportif ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 20
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
-    "points" : 3
+    "statement" : "Quel pays a remporté le plus de médailles aux Jeux Olympiques ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 20
   },
   {
-    "statement" : "Quelle est la capitale de l'Indonésie ?",
-    "points" : 1
+    "statement" : "La Coupe du Monde de la FIFA est-elle un événement sportif ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 20
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie centrale ?",
-    "points" : 3
+    "statement" : "Quel est le site touristique le plus visité au monde ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 21
   },
   {
-    "statement" : "Quelle est la capitale du Kazakhstan ?",
-    "points" : 1
+    "statement" : "La Tour Eiffel est-elle un site touristique ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 21
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
-    "points" : 3
+    "statement" : "Quel est le site touristique le plus célèbre en Italie ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 21
   },
   {
-    "statement" : "Quelle est la capitale de la Corée du Sud ?",
-    "points" : 1
+    "statement" : "Le Colisée est-il un site touristique ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 21
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
-    "points" : 3
+    "statement" : "Quel est le plat traditionnel de la France ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 22
   },
   {
-    "statement" : "Quelle est la capitale du Pakistan ?",
-    "points" : 1
+    "statement" : "Le croissant est-il un plat traditionnel français ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 22
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie de l'Ouest ?",
-    "points" : 3
+    "statement" : "Quel est le plat traditionnel de l'Italie ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 22
   },
   {
-    "statement" : "Quelle est la capitale de l'Irak ?",
-    "points" : 1
+    "statement" : "La pizza est-elle un plat traditionnel italien ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 22
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie du Nord ?",
-    "points" : 3
+    "statement" : "Quel est l'animal en voie de disparition le plus connu ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 23
   },
   {
-    "statement" : "Quelle est la capitale de la Mongolie ?",
-    "points" : 1
+    "statement" : "Les pandas sont-ils en voie de disparition ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 23
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
-    "points" : 3
+    "statement" : "Combien d'espèces sont en voie de disparition ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 23
   },
   {
-    "statement" : "Quelle est la capitale de l'Afghanistan ?",
-    "points" : 1
+    "statement" : "Les tigres sont-ils en voie de disparition ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 23
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
-    "points" : 3
+    "statement" : "Quel est le phénomène naturel le plus destructeur ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 24
   },
   {
-    "statement" : "Quelle est la capitale de la Thaïlande ?",
-    "points" : 1
+    "statement" : "Les tremblements de terre sont-ils des phénomènes naturels ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 24
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
-    "points" : 3
+    "statement" : "Quel phénomène naturel est associé aux tornades ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 24
   },
   {
-    "statement" : "Quelle est la capitale du Bangladesh ?",
-    "points" : 1
+    "statement" : "Les ouragans sont-ils des phénomènes naturels ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 24
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
-    "points" : 3
+    "statement" : "Quelle est l'innovation informatique la plus récente ?",
+    "points" : 3,
+    "type": 1,
+    "quiz" : 25
   },
   {
-    "statement" : "Quelle est la capitale de la Corée du Nord ?",
-    "points" : 1
+    "statement" : "Les ordinateurs sont-ils des innovations informatiques ?",
+    "points" : 2,
+    "type": 0,
+    "quiz" : 25
   },
   {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
-    "points" : 3
+    "statement" : "Quelle entreprise a lancé le premier ordinateur personnel ?",
+    "points" : 4,
+    "type": 1,
+    "quiz" : 25
   },
   {
-    "statement" : "Quelle est la capitale de la Syrie ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale de la Malaisie ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale du Sri Lanka ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale de Taïwan ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale du Yémen ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale du Vietnam ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale du Népal ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale de Hong Kong ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale de l'Ouzbékistan ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale de la Birmanie ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale du Bhoutan ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale de Macao ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale du Kirghizistan ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale du Laos ?",
-    "points" : 1
-  },
-  {
-    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
-    "points" : 3
-  },
-  {
-    "statement" : "Quelle est la capitale des Maldives ?",
-    "points" : 1
+    "statement" : "Les smartphones sont-ils des innovations informatiques ?",
+    "points" : 1,
+    "type": 0,
+    "quiz" : 25
   }
 ]
