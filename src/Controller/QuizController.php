@@ -20,7 +20,6 @@ class QuizController extends AbstractController
     #[Route("/quiz/{id}", name:"quiz_show", methods:["GET"])]
     public function show(int $id): Response
     {
-        
         // Récupérer le quiz par son ID
         $QuizRepository = $this->entityManager->getRepository(Quiz::class);
         $quiz = $QuizRepository->find($id);
