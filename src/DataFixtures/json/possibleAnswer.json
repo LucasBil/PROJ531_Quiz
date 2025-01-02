@@ -1,0 +1,754 @@
+[
+  {
+    "true": true,
+    "value": "4"
+  },
+  {
+    "true": false,
+    "value": "3"
+  },
+  {
+    "true": true,
+    "value": "bleu"
+  },
+  {
+    "true": false,
+    "value": "vert"
+  },
+  {
+    "true": true,
+    "value": "7"
+  },
+  {
+    "true": false,
+    "value": "6"
+  },
+  {
+    "true": true,
+    "value": "Pacifique"
+  },
+  {
+    "true": false,
+    "value": "Atlantique"
+  },
+  {
+    "true": true,
+    "value": "Paris"
+  },
+  {
+    "true": false,
+    "value": "Lyon"
+  },
+  {
+    "true": true,
+    "value": "Everest"
+  },
+  {
+    "true": false,
+    "value": "K2"
+  },
+  {
+    "true": true,
+    "value": "portugais"
+  },
+  {
+    "true": false,
+    "value": "espagnol"
+  },
+  {
+    "true": true,
+    "value": "Nil"
+  },
+  {
+    "true": false,
+    "value": "Amazon"
+  },
+  {
+    "true": true,
+    "value": "yen"
+  },
+  {
+    "true": false,
+    "value": "won"
+  },
+  {
+    "true": true,
+    "value": "Sahara"
+  },
+  {
+    "true": false,
+    "value": "Gobi"
+  },
+  {
+    "true": true,
+    "value": "Mercure"
+  },
+  {
+    "true": false,
+    "value": "Vénus"
+  },
+  {
+    "true": true,
+    "value": "Russie"
+  },
+  {
+    "true": false,
+    "value": "Canada"
+  },
+  {
+    "true": true,
+    "value": "Vatican"
+  },
+  {
+    "true": false,
+    "value": "Monaco"
+  },
+  {
+    "true": true,
+    "value": "Mandarin"
+  },
+  {
+    "true": false,
+    "value": "Anglais"
+  },
+  {
+    "true": true,
+    "value": "Lac Supérieur"
+  },
+  {
+    "true": false,
+    "value": "Lac Victoria"
+  },
+  {
+    "true": true,
+    "value": "Canberra"
+  },
+  {
+    "true": false,
+    "value": "Sydney"
+  },
+  {
+    "true": true,
+    "value": "Éléphant"
+  },
+  {
+    "true": false,
+    "value": "Baleine"
+  },
+  {
+    "true": true,
+    "value": "Rome"
+  },
+  {
+    "true": false,
+    "value": "Milan"
+  },
+  {
+    "true": true,
+    "value": "Brésil"
+  },
+  {
+    "true": false,
+    "value": "Argentine"
+  },
+  {
+    "true": true,
+    "value": "Madrid"
+  },
+  {
+    "true": false,
+    "value": "Barcelone"
+  },
+  {
+    "true": true,
+    "value": "Pacifique"
+  },
+  {
+    "true": false,
+    "value": "Atlantique"
+  },
+  {
+    "true": true,
+    "value": "Berlin"
+  },
+  {
+    "true": false,
+    "value": "Munich"
+  },
+  {
+    "true": true,
+    "value": "Sahara"
+  },
+  {
+    "true": false,
+    "value": "Kalahari"
+  },
+  {
+    "true": true,
+    "value": "Ottawa"
+  },
+  {
+    "true": false,
+    "value": "Toronto"
+  },
+  {
+    "true": true,
+    "value": "Algérie"
+  },
+  {
+    "true": false,
+    "value": "Nigeria"
+  },
+  {
+    "true": true,
+    "value": "Pékin"
+  },
+  {
+    "true": false,
+    "value": "Shanghai"
+  },
+  {
+    "true": true,
+    "value": "Chine"
+  },
+  {
+    "true": false,
+    "value": "Inde"
+  },
+  {
+    "true": true,
+    "value": "Moscou"
+  },
+  {
+    "true": false,
+    "value": "Saint-Pétersbourg"
+  },
+  {
+    "true": true,
+    "value": "Russie"
+  },
+  {
+    "true": false,
+    "value": "France"
+  },
+  {
+    "true": true,
+    "value": "New Delhi"
+  },
+  {
+    "true": false,
+    "value": "Mumbai"
+  },
+  {
+    "true": true,
+    "value": "Australie"
+  },
+  {
+    "true": false,
+    "value": "Nouvelle-Zélande"
+  },
+  {
+    "true": true,
+    "value": "Brasilia"
+  },
+  {
+    "true": false,
+    "value": "Rio de Janeiro"
+  },
+  {
+    "true": true,
+    "value": "Arabie Saoudite"
+  },
+  {
+    "true": false,
+    "value": "Iran"
+  },
+  {
+    "true": true,
+    "value": "Buenos Aires"
+  },
+  {
+    "true": false,
+    "value": "Cordoba"
+  },
+  {
+    "true": true,
+    "value": "Canada"
+  },
+  {
+    "true": false,
+    "value": "États-Unis"
+  },
+  {
+    "true": true,
+    "value": "Mexico"
+  },
+  {
+    "true": false,
+    "value": "Guadalajara"
+  },
+  {
+    "true": true,
+    "value": "Cuba"
+  },
+  {
+    "true": false,
+    "value": "Haïti"
+  },
+  {
+    "true": true,
+    "value": "Le Caire"
+  },
+  {
+    "true": false,
+    "value": "Alexandrie"
+  },
+  {
+    "true": true,
+    "value": "Nigeria"
+  },
+  {
+    "true": false,
+    "value": "Ghana"
+  },
+  {
+    "true": true,
+    "value": "Pretoria"
+  },
+  {
+    "true": false,
+    "value": "Le Cap"
+  },
+  {
+    "true": true,
+    "value": "Éthiopie"
+  },
+  {
+    "true": false,
+    "value": "Kenya"
+  },
+  {
+    "true": true,
+    "value": "Ankara"
+  },
+  {
+    "true": false,
+    "value": "Istanbul"
+  },
+  {
+    "true": true,
+    "value": "République Démocratique du Congo"
+  },
+  {
+    "true": false,
+    "value": "Cameroun"
+  },
+  {
+    "true": true,
+    "value": "Riyad"
+  },
+  {
+    "true": false,
+    "value": "Djeddah"
+  },
+  {
+    "true": true,
+    "value": "Algérie"
+  },
+  {
+    "true": false,
+    "value": "Libye"
+  },
+  {
+    "true": true,
+    "value": "Téhéran"
+  },
+  {
+    "true": false,
+    "value": "Ispahan"
+  },
+  {
+    "true": true,
+    "value": "Indonésie"
+  },
+  {
+    "true": false,
+    "value": "Philippines"
+  },
+  {
+    "true": true,
+    "value": "Jakarta"
+  },
+  {
+    "true": false,
+    "value": "Surabaya"
+  },
+  {
+    "true": true,
+    "value": "Kazakhstan"
+  },
+  {
+    "true": false,
+    "value": "Ouzbékistan"
+  },
+  {
+    "true": true,
+    "value": "Séoul"
+  },
+  {
+    "true": false,
+    "value": "Busan"
+  },
+  {
+    "true": true,
+    "value": "Inde"
+  },
+  {
+    "true": false,
+    "value": "Pakistan"
+  },
+  {
+    "true": true,
+    "value": "Islamabad"
+  },
+  {
+    "true": false,
+    "value": "Karachi"
+  },
+  {
+    "true": true,
+    "value": "Arabie Saoudite"
+  },
+  {
+    "true": false,
+    "value": "Turquie"
+  },
+  {
+    "true": true,
+    "value": "Bagdad"
+  },
+  {
+    "true": false,
+    "value": "Bassorah"
+  },
+  {
+    "true": true,
+    "value": "Russie"
+  },
+  {
+    "true": false,
+    "value": "Chine"
+  },
+  {
+    "true": true,
+    "value": "Oulan-Bator"
+  },
+  {
+    "true": false,
+    "value": "Erdenet"
+  },
+  {
+    "true": true,
+    "value": "Turquie"
+  },
+  {
+    "true": false,
+    "value": "Iran"
+  },
+  {
+    "true": true,
+    "value": "Kaboul"
+  },
+  {
+    "true": false,
+    "value": "Kandahar"
+  },
+  {
+    "true": true,
+    "value": "Indonésie"
+  },
+  {
+    "true": false,
+    "value": "Malaisie"
+  },
+  {
+    "true": true,
+    "value": "Bangkok"
+  },
+  {
+    "true": false,
+    "value": "Chiang Mai"
+  },
+  {
+    "true": true,
+    "value": "Inde"
+  },
+  {
+    "true": false,
+    "value": "Pakistan"
+  },
+  {
+    "true": true,
+    "value": "Dacca"
+  },
+  {
+    "true": false,
+    "value": "Chittagong"
+  },
+  {
+    "true": true,
+    "value": "Chine"
+  },
+  {
+    "true": false,
+    "value": "Japon"
+  },
+  {
+    "true": false,
+    "value": "Pyongyang"
+  },
+  {
+    "true": true,
+    "value": "Séoul"
+  },
+  {
+    "true": true,
+    "value": "Turquie"
+  },
+  {
+    "true": false,
+    "value": "Iran"
+  },
+  {
+    "true": true,
+    "value": "Damas"
+  },
+  {
+    "true": false,
+    "value": "Aleppo"
+  },
+  {
+    "true": true,
+    "value": "Indonésie"
+  },
+  {
+    "true": false,
+    "value": "Malaisie"
+  },
+  {
+    "true": true,
+    "value": "Kuala Lumpur"
+  },
+  {
+    "true": false,
+    "value": "Penang"
+  },
+  {
+    "true": true,
+    "value": "Inde"
+  },
+  {
+    "true": false,
+    "value": "Pakistan"
+  },
+  {
+    "true": true,
+    "value": "Colombo"
+  },
+  {
+    "true": false,
+    "value": "Kandy"
+  },
+  {
+    "true": true,
+    "value": "Chine"
+  },
+  {
+    "true": false,
+    "value": "Japon"
+  },
+  {
+    "true": true,
+    "value": "Taipei"
+  },
+  {
+    "true": false,
+    "value": "Kaohsiung"
+  },
+  {
+    "true": true,
+    "value": "Turquie"
+  },
+  {
+    "true": false,
+    "value": "Iran"
+  },
+  {
+    "true": true,
+    "value": "Sanaa"
+  },
+  {
+    "true": false,
+    "value": "Aden"
+  },
+  {
+    "true": true,
+    "value": "Indonésie"
+  },
+  {
+    "true": false,
+    "value": "Malaisie"
+  },
+  {
+    "true": true,
+    "value": "Hanoï"
+  },
+  {
+    "true": false,
+    "value": "Ho Chi Minh Ville"
+  },
+  {
+    "true": true,
+    "value": "Inde"
+  },
+  {
+    "true": false,
+    "value": "Pakistan"
+  },
+  {
+    "true": true,
+    "value": "Katmandou"
+  },
+  {
+    "true": false,
+    "value": "Pokhara"
+  },
+  {
+    "true": true,
+    "value": "Chine"
+  },
+  {
+    "true": false,
+    "value": "Japon"
+  },
+  {
+    "true": true,
+    "value": "Hong Kong"
+  },
+  {
+    "true": false,
+    "value": "Macau"
+  },
+  {
+    "true": true,
+    "value": "Turquie"
+  },
+  {
+    "true": false,
+    "value": "Iran"
+  },
+  {
+    "true": true,
+    "value": "Tachkent"
+  },
+  {
+    "true": false,
+    "value": "Samarkand"
+  },
+  {
+    "true": true,
+    "value": "Indonésie"
+  },
+  {
+    "true": false,
+    "value": "Malaisie"
+  },
+  {
+    "true": true,
+    "value": "Naypyidaw"
+  },
+  {
+    "true": false,
+    "value": "Yangon"
+  },
+  {
+    "true": true,
+    "value": "Inde"
+  },
+  {
+    "true": false,
+    "value": "Pakistan"
+  },
+  {
+    "true": true,
+    "value": "Thimphu"
+  },
+  {
+    "true": false,
+    "value": "Paro"
+  },
+  {
+    "true": true,
+    "value": "Chine"
+  },
+  {
+    "true": false,
+    "value": "Japon"
+  },
+  {
+    "true": true,
+    "value": "Macau"
+  },
+  {
+    "true": false,
+    "value": "Hong Kong"
+  },
+  {
+    "true": true,
+    "value": "Turquie"
+  },
+  {
+    "true": false,
+    "value": "Iran"
+  },
+  {
+    "true": true,
+    "value": "Bichkek"
+  },
+  {
+    "true": false,
+    "value": "Och"
+  },
+  {
+    "true": true,
+    "value": "Indonésie"
+  },
+  {
+    "true": false,
+    "value": "Malaisie"
+  },
+  {
+    "true": true,
+    "value": "Vientiane"
+  },
+  {
+    "true": false,
+    "value": "Luang Prabang"
+  },
+  {
+    "true": true,
+    "value": "Inde"
+  },
+  {
+    "true": false,
+    "value": "Pakistan"
+  },
+  {
+    "true": true,
+    "value": "Malé"
+  },
+  {
+    "true": false,
+    "value": "Addu City"
+  }
+]

@@ -7,9 +7,10 @@ use DateInterval;
 use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: AnswerRepository::class)]
-class Answer
+class Answer implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,6 +30,9 @@ class Answer
     #[ORM\ManyToOne(inversedBy: 'answers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Quiz $quiz = null;
+
+    #[ORM\Column]
+    private ?int $score = null;
 
     public function getId(): ?int
     {
@@ -81,5 +85,28 @@ class Answer
         $this->quiz = $quiz;
 
         return $this;
+    }
+
+    public function getScore(): ?int
+    {
+        return $this->score;
+    }
+
+    public function setScore(int $score): static
+    {
+        $this->score = $score;
+
+        return $this;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'id' => $this->id,
+            'time' => $this->time->format('%H:%I:%S'),
+            'date_time' => $this->date_time->format('Y-m-d H:i:s'),
+            'user' => $this->user,
+            'score' => $this->score,
+        );
     }
 }

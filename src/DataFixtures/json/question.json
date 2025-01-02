@@ -1,0 +1,386 @@
+[
+  {
+    "statement" : "Les rhinocéros ont combien de pattes ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quelle est la couleur du ciel ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Combien de continents y a-t-il sur Terre ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quel est le plus grand océan du monde ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quelle est la capitale de la France ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus haut sommet du monde ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la langue officielle du Brésil ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quel est le plus long fleuve du monde ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la monnaie utilisée au Japon ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quel est le plus grand désert du monde ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la planète la plus proche du Soleil ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quel est le plus grand pays du monde par superficie ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quel est le plus petit pays du monde ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quelle est la langue la plus parlée au monde ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quel est le plus grand lac d'eau douce du monde ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Australie ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quel est le plus grand mammifère terrestre ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Italie ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays d'Amérique du Sud ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Espagne ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand océan de la Terre ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Allemagne ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand désert chaud du monde ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Canada ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quel est le plus grand pays d'Afrique ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Chine ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays d'Asie ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Russie ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays d'Europe ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Inde ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays d'Océanie ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quelle est la capitale du Brésil ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays du Moyen-Orient ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Argentine ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays d'Amérique du Nord ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Mexique ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays des Caraïbes ?",
+    "points" : 2
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Égypte ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Afrique de l'Ouest ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Afrique du Sud ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Afrique de l'Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Turquie ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Afrique centrale ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Arabie Saoudite ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Afrique du Nord ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Iran ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Indonésie ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie centrale ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Kazakhstan ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Corée du Sud ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Pakistan ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie de l'Ouest ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Irak ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Nord ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Mongolie ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Afghanistan ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Thaïlande ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Bangladesh ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Corée du Nord ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Syrie ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Malaisie ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Sri Lanka ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de Taïwan ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Yémen ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Vietnam ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Népal ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de Hong Kong ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de l'Ouzbékistan ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de la Birmanie ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Bhoutan ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie de l'Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale de Macao ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Ouest ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Kirghizistan ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud-Est ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale du Laos ?",
+    "points" : 1
+  },
+  {
+    "statement" : "Quel est le plus grand pays de l'Asie du Sud ?",
+    "points" : 3
+  },
+  {
+    "statement" : "Quelle est la capitale des Maldives ?",
+    "points" : 1
+  }
+]

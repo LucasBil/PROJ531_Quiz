@@ -6,9 +6,10 @@ use App\Repository\QuestionTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: QuestionTypeRepository::class)]
-class QuestionType
+class QuestionType implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -74,5 +75,13 @@ class QuestionType
         }
 
         return $this;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'id' => $this->id,
+            'name' => $this->name,
+        );
     }
 }

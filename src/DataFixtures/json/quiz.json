@@ -1,0 +1,248 @@
+[
+  {
+    "name" : "Connaissez vous les rhinocéros ?",
+    "maxTime" : "1 minutes + 30 seconds",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "PHP et Symfony le monde incroyable",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les merveilles de la nature",
+    "maxTime" : "2 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les technologies du futur",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "L'histoire de la Rome antique",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les secrets de l'univers",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les chefs-d'œuvre de l'art",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les grands compositeurs de musique",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les classiques de la littérature",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les records sportifs",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les destinations de voyage incontournables",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les cuisines du monde",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les animaux fascinants",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les merveilles naturelles",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les innovations technologiques",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les grandes batailles historiques",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les découvertes scientifiques",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les mouvements artistiques",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les genres musicaux",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les auteurs célèbres",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les exploits sportifs",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les lieux de voyage exotiques",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les plats traditionnels",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les animaux en voie de disparition",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les paysages naturels",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les gadgets technologiques",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les figures historiques",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les théories scientifiques",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les peintres célèbres",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les instruments de musique",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les œuvres littéraires",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les événements sportifs",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les sites touristiques",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les recettes de cuisine",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les animaux sauvages",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les phénomènes naturels",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les avancées technologiques",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les empires historiques",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les expériences scientifiques",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les sculptures célèbres",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les genres musicaux",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les écrivains célèbres",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les records sportifs",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les destinations de voyage",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les spécialités culinaires",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les animaux domestiques",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les merveilles naturelles",
+    "maxTime" : "4 minutes",
+    "difficulty" : "hard"
+  },
+  {
+    "name" : "Les inventions technologiques",
+    "maxTime" : "5 minutes",
+    "difficulty" : "medium"
+  },
+  {
+    "name" : "Les événements historiques",
+    "maxTime" : "2 minutes",
+    "difficulty" : "easy"
+  },
+  {
+    "name" : "Les découvertes scientifiques",
+    "maxTime" : "3 minutes",
+    "difficulty" : "medium"
+  }
+]

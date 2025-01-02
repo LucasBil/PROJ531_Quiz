@@ -9,10 +9,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuizRepository::class)]
-class Quiz
+class Quiz implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -183,5 +184,37 @@ class Quiz
         $this->difficulty = $difficulty->value;
 
         return $this;
+    }
+
+    public function getMaxScore() : int
+    {
+        return (int) array_sum(
+            $this->questions->map(function (Question $question) {
+                return $question->getPoints();
+            })->toArray()
+        );
+    }
+
+    public function getUserAnswers() : array
+    {
+        return $this->answers->map(function (Answer $answer) {
+            return $answer->getUser();
+        })->toArray();
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'id'=> $this->id,
+            'name'=> $this->name,
+            'theme'=> $this->theme,
+            'difficulty'=> $this->difficulty,
+            'creator'=> $this->user,
+            'max_time'=> $this->max_time?->format("%H:%I:%S"),
+            'max_score'=> $this->getMaxScore(),
+            'questions' => $this->questions->toArray(),
+            'answers' => $this->answers->toArray(),
+            'response' => $this->getUserAnswers()
+        );
     }
 }

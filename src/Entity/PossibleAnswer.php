@@ -4,9 +4,10 @@ namespace App\Entity;
 
 use App\Repository\PossibleAnswerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: PossibleAnswerRepository::class)]
-class PossibleAnswer
+class PossibleAnswer implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -62,5 +63,14 @@ class PossibleAnswer
         $this->question = $question;
 
         return $this;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'id' => $this->id,
+            'is_true' => $this->is_true,
+            'value' => $this->value
+        );
     }
 }

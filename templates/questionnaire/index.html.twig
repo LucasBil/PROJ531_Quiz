@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quizs{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div id="vue" class="d-flex flex-column gap-2 mx-2">
+        <div class="d-flex justify-content-center align-items-center gap-3">
+            <p class="mb-0 fs-5 fw-semibold">Quizz populaires</p>
+            <hr class="flex-grow-1 border-black">
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+            <!--#region Quiz info -->
+            <div v-for="quiz in quizs" class="d-flex flex-grow-1">
+                <div style="height: 75px; width: 75px;" class="bg-primary-purple rounded"></div>
+                <div class="d-flex flex-column justify-content-center gap-1 ps-2 pe-4 my-2
+                            border-top border-end border-bottom rounded-end border-black
+                            flex-grow-1 fw-bold">
+                    <a class="fs-6 text-truncate" :href="`{{ path('quiz_show', { 'id': ' ' }) }}${quiz.id}`">${quiz.name}$</a>
+                    <div class="d-flex text-primary-purple w-100 gap-3">
+                        <div class="d-flex align-items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                            </svg>
+                            <p class="mb-0">${capitalize(quiz.difficulty)}$</p>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+                            </svg>
+                            <p class="mb-0">${quiz.theme.name}$</p>
+                        </div>
+                        <div v-if="quiz.max_time" class="d-flex align-items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <p class="mb-0">${quiz.max_time}$</p>
+                        </div>
+                        <div class="d-flex align-items-center align-self-end gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                            </svg>
+                            <p class="mb-0">2/5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--#endregion -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        const { createApp, ref } = Vue;
+        let app = createApp({
+            delimiters: ["${", "}$"],
+            setup() {
+                return {
+                    quizs : ref(JSON.parse(`{{ quizs|json_encode|raw }}`)),
+                }
+            },
+            computed: {
+            },
+            methods: {
+                capitalize(string) {
+                    return string.charAt(0).toUpperCase() + string.slice(1);
+                },
+            },
+            mounted() {},
+        }).mount('section')
+    </script>
+{% endblock %}

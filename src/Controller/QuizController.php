@@ -22,7 +22,10 @@ class QuizController extends AbstractController
     public  function showAll() {
         $QuizRepository = $this->entityManager->getRepository(Quiz::class);
         $quizs = $QuizRepository->findAll();
-        dd($quizs);
+
+        return $this->render('questionnaire/index.html.twig', [
+            'quizs' => $quizs,
+        ]);
     }
 
     #[IsGranted("ROLE_USER")]

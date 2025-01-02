@@ -1,0 +1,13 @@
+[
+  { "name" : "Animaux" },
+  { "name" : "Nature" },
+  { "name" : "Technology" },
+  { "name" : "History" },
+  { "name" : "Science" },
+  { "name" : "Art" },
+  { "name" : "Music" },
+  { "name" : "Literature" },
+  { "name" : "Sports" },
+  { "name" : "Travel" },
+  { "name" : "Food" }
+]
