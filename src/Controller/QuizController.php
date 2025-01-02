@@ -18,6 +18,13 @@ class QuizController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    #[Route("/", name:"quizs", methods:["GET"])]
+    public  function showAll() {
+        $QuizRepository = $this->entityManager->getRepository(Quiz::class);
+        $quizs = $QuizRepository->findAll();
+        dd($quizs);
+    }
+
     #[IsGranted("ROLE_USER")]
     #[Route("/quiz/{id}", name:"quiz_show", methods:["GET"])]
     public function show(int $id): Response
@@ -31,13 +38,9 @@ class QuizController extends AbstractController
             throw $this->createNotFoundException("Le quiz avec l'ID $id n'existe pas.");
         }
 
-        // Récupérer les questions associées
-        $questions = $quiz->getQuestions()->toArray();
-
         // Retourner la réponse avec un rendu Twig
         return $this->render('questionnaire/show.html.twig', [
             'quiz' => $quiz,
-            'questions' => $questions,
         ]);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
+use DateInterval;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,84 +16,69 @@ class Answer
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $score = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $time = null;
+    #[ORM\Column(type: Types::DATEINTERVAL)]
+    private ?DateInterval $time = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_time = null;
+    private ?DateTime $date_time = null;
 
     #[ORM\ManyToOne(inversedBy: 'answers')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $id_user = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'answers')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Quiz $id_quiz = null;
+    private ?Quiz $quiz = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getScore(): ?int
-    {
-        return $this->score;
-    }
-
-    public function setScore(int $score): static
-    {
-        $this->score = $score;
-
-        return $this;
-    }
-
-    public function getTime(): ?\DateTimeInterface
+    public function getTime(): ?DateInterval
     {
         return $this->time;
     }
 
-    public function setTime(\DateTimeInterface $time): static
+    public function setTime(DateInterval $time): static
     {
         $this->time = $time;
 
         return $this;
     }
 
-    public function getDateTime(): ?\DateTimeInterface
+    public function getDateTime(): ?DateTime
     {
         return $this->date_time;
     }
 
-    public function setDateTime(\DateTimeInterface $date_time): static
+    public function setDateTime(DateTime $date_time): static
     {
         $this->date_time = $date_time;
 
         return $this;
     }
 
-    public function getIdUser(): ?User
+    public function getUser(): ?User
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(?User $id_user): static
+    public function setUser(?User $user): static
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getIdQuiz(): ?Quiz
+    public function getQuiz(): ?Quiz
     {
-        return $this->id_quiz;
+        return $this->quiz;
     }
 
-    public function setIdQuiz(?Quiz $id_quiz): static
+    public function setQuiz(?Quiz $quiz): static
     {
-        $this->id_quiz = $id_quiz;
+        $this->quiz = $quiz;
 
         return $this;
     }

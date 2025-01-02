@@ -23,7 +23,7 @@ use function Symfony\Component\Translation\t;
 class AdminController extends AbstractController
 {
     public function __construct(
-        private EntityManagerInterface $doctrine,
+        private readonly EntityManagerInterface $doctrine,
     ) {}
 
     #[Route('/', name: 'app_admin', methods: ['GET'])]
@@ -70,10 +70,10 @@ class AdminController extends AbstractController
 
         $quizDoctrine = new Quiz();
         $quizDoctrine->setName($quiz["name"])
-            ->setDifficulty($difficulty->value)
+            ->setDifficulty($difficulty)
             ->setMaxTime($maxtime)
-            ->setIdUser($this->getUser())
-            ->setIdTheme($theme);
+            ->setUser($this->getUser())
+            ->setTheme($theme);
         $this->doctrine->persist($quizDoctrine);
         $this->doctrine->flush();
 
@@ -82,15 +82,15 @@ class AdminController extends AbstractController
             $_question = new Question();
             $_question->setStatement($question["sentence"])
                 ->setPoints($question["rating"])
-                ->setIdType($type)
-                ->setIdQuiz($quizDoctrine);
+                ->setType($type)
+                ->setQuiz($quizDoctrine);
             $this->doctrine->flush();
             $this->doctrine->persist($_question);
             foreach ($question["answers"]??[] as $answer) {
                 $_answer = new PossibleAnswer();
                 $_answer->setValue($answer["sentence"])
                         ->setTrue($answer["right"])
-                        ->setIdQuestion($_question);
+                        ->setQuestion($_question);
                 $this->doctrine->persist($_answer);
             }
         }

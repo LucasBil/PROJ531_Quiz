@@ -21,7 +21,7 @@ class Theme
     /**
      * @var Collection<int, Quiz>
      */
-    #[ORM\OneToMany(targetEntity: Quiz::class, mappedBy: 'id_theme')]
+    #[ORM\OneToMany(targetEntity: Quiz::class, mappedBy: 'theme')]
     private Collection $quizzes;
 
     public function __construct()
@@ -58,7 +58,7 @@ class Theme
     {
         if (!$this->quizzes->contains($quiz)) {
             $this->quizzes->add($quiz);
-            $quiz->setIdTheme($this);
+            $quiz->setTheme($this);
         }
 
         return $this;
@@ -68,8 +68,8 @@ class Theme
     {
         if ($this->quizzes->removeElement($quiz)) {
             // set the owning side to null (unless already changed)
-            if ($quiz->getIdTheme() === $this) {
-                $quiz->setIdTheme(null);
+            if ($quiz->getTheme() === $this) {
+                $quiz->setTheme(null);
             }
         }
 
