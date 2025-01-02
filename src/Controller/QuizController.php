@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class QuizController extends AbstractController
 {
@@ -17,6 +18,7 @@ class QuizController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    #[IsGranted("ROLE_USER")]
     #[Route("/quiz/{id}", name:"quiz_show", methods:["GET"])]
     public function show(int $id): Response
     {
