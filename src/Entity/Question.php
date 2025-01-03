@@ -7,10 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
-class Question
+class Question implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,16 +33,16 @@ class Question
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?QuestionType $id_type = null;
+    private ?QuestionType $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Quiz $id_quiz = null;
+    private ?Quiz $quiz = null;
 
     /**
      * @var Collection<int, PossibleAnswer>
      */
-    #[ORM\OneToMany(targetEntity: PossibleAnswer::class, mappedBy: 'id_question')]
+    #[ORM\OneToMany(targetEntity: PossibleAnswer::class, mappedBy: 'question')]
     private Collection $possibleAnswers;
 
     public function __construct()
@@ -78,26 +79,26 @@ class Question
         return $this;
     }
 
-    public function getIdType(): ?QuestionType
+    public function getType(): ?QuestionType
     {
-        return $this->id_type;
+        return $this->type;
     }
 
-    public function setIdType(?QuestionType $id_type): static
+    public function setType(?QuestionType $type): static
     {
-        $this->id_type = $id_type;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getIdQuiz(): ?Quiz
+    public function getQuiz(): ?Quiz
     {
-        return $this->id_quiz;
+        return $this->quiz;
     }
 
-    public function setIdQuiz(?Quiz $id_quiz): static
+    public function setQuiz(?Quiz $quiz): static
     {
-        $this->id_quiz = $id_quiz;
+        $this->quiz = $quiz;
 
         return $this;
     }
@@ -114,7 +115,7 @@ class Question
     {
         if (!$this->possibleAnswers->contains($possibleAnswer)) {
             $this->possibleAnswers->add($possibleAnswer);
-            $possibleAnswer->setIdQuestion($this);
+            $possibleAnswer->setQuestion($this);
         }
 
         return $this;
@@ -124,11 +125,21 @@ class Question
     {
         if ($this->possibleAnswers->removeElement($possibleAnswer)) {
             // set the owning side to null (unless already changed)
-            if ($possibleAnswer->getIdQuestion() === $this) {
-                $possibleAnswer->setIdQuestion(null);
+            if ($possibleAnswer->getQuestion() === $this) {
+                $possibleAnswer->setQuestion(null);
             }
         }
 
         return $this;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'id' => $this->id,
+            'statement' => $this->statement,
+            'type' => $this->type,
+            'possibleAnswers' => $this->possibleAnswers->toArray(),
+        );
     }
 }

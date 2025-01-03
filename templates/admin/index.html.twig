@@ -154,29 +154,13 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
-        const { createApp, ref } = Vue
-        let app = createApp({
+        createApp({
             delimiters: ["${", "}$"],
             setup() {
                 return {
-                    questionTypes : ref([
-                        {% for type in questionTypes %}
-                        {
-                            id : {{ type.id }},
-                            name : "{{ type.name }}",
-                        },
-                        {% endfor %}
-                    ]),
-                    themes: ref([
-                        {% for theme in themes %}
-                        {
-                          id : {{ theme.id }},
-                          name : `{{ theme.name }}`,
-                        },
-                        {% endfor %}
-                    ]),
+                    questionTypes : ref(JSON.parse(`{{ questionTypes|json_encode|raw }}`)),
+                    themes: ref(JSON.parse(`{{ themes|json_encode|raw }}`)),
                     questions : ref([]),
                     quiz : ref({
                         name: "",

@@ -3,37 +3,88 @@
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
+use DateInterval;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: AnswerRepository::class)]
-class Answer
+class Answer implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $score = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $time = null;
+    #[ORM\Column(type: Types::DATEINTERVAL)]
+    private ?DateInterval $time = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_time = null;
+    private ?DateTime $date_time = null;
 
     #[ORM\ManyToOne(inversedBy: 'answers')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $id_user = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'answers')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Quiz $id_quiz = null;
+    private ?Quiz $quiz = null;
+
+    #[ORM\Column]
+    private ?int $score = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getTime(): ?DateInterval
+    {
+        return $this->time;
+    }
+
+    public function setTime(DateInterval $time): static
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+    public function getDateTime(): ?DateTime
+    {
+        return $this->date_time;
+    }
+
+    public function setDateTime(DateTime $date_time): static
+    {
+        $this->date_time = $date_time;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getQuiz(): ?Quiz
+    {
+        return $this->quiz;
+    }
+
+    public function setQuiz(?Quiz $quiz): static
+    {
+        $this->quiz = $quiz;
+
+        return $this;
     }
 
     public function getScore(): ?int
@@ -48,51 +99,14 @@ class Answer
         return $this;
     }
 
-    public function getTime(): ?\DateTimeInterface
+    public function jsonSerialize(): mixed
     {
-        return $this->time;
-    }
-
-    public function setTime(\DateTimeInterface $time): static
-    {
-        $this->time = $time;
-
-        return $this;
-    }
-
-    public function getDateTime(): ?\DateTimeInterface
-    {
-        return $this->date_time;
-    }
-
-    public function setDateTime(\DateTimeInterface $date_time): static
-    {
-        $this->date_time = $date_time;
-
-        return $this;
-    }
-
-    public function getIdUser(): ?User
-    {
-        return $this->id_user;
-    }
-
-    public function setIdUser(?User $id_user): static
-    {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
-
-    public function getIdQuiz(): ?Quiz
-    {
-        return $this->id_quiz;
-    }
-
-    public function setIdQuiz(?Quiz $id_quiz): static
-    {
-        $this->id_quiz = $id_quiz;
-
-        return $this;
+        return array(
+            'id' => $this->id,
+            'time' => $this->time->format('%H:%I:%S'),
+            'date_time' => $this->date_time->format('Y-m-d H:i:s'),
+            'user' => $this->user,
+            'score' => $this->score,
+        );
     }
 }
