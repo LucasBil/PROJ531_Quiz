@@ -133,6 +133,13 @@ class Question implements JsonSerializable
         return $this;
     }
 
+    public function getRightAnswers() : array
+    {
+        return array_filter($this->possibleAnswers->toArray(), function (PossibleAnswer $possibleAnswer) {
+            return $possibleAnswer->isTrue();
+        });
+    }
+
     public function jsonSerialize(): mixed
     {
         return array(
@@ -140,6 +147,7 @@ class Question implements JsonSerializable
             'statement' => $this->statement,
             'type' => $this->type,
             'possibleAnswers' => $this->possibleAnswers->toArray(),
+            'points' => $this->points,
         );
     }
 }
