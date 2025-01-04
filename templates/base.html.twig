@@ -33,15 +33,18 @@
             <div style="width: 50%;" class="d-flex align-items-center gap-3">
                 <a style="text-wrap: nowrap; color: white" class="btn" href="{{ path('quizs') }}">PROJ531-QUIZ</a>
                 <div class="input-group">
-                    <button class="btn bg-secondary-purple d-flex justify-content-center align-items-center" type="button">
+                    <button @click="redirectSearch()" class="btn bg-secondary-purple d-flex justify-content-center align-items-center" type="button">
                         <!-- Search icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                         <!-- --- -->
                     </button>
-                    <input v-model="search" type="text" class="form-control bg-secondary-purple input-search" placeholder="Rechercher">
+                    <input list="quizs" v-model="search" type="text" class="form-control bg-secondary-purple input-search" placeholder="Rechercher">
                 </div>
+                <datalist id="quizs">
+                    <option v-for="quiz in quizs" :value="quiz.name">
+                </datalist>
             </div>
             <div class="d-flex align-items-center gap-3">
                 {% if app.user %}
@@ -77,12 +80,31 @@
             delimiters: ["${", "}$"],
             setup() {
                 return {
-                    search : ref("")
+                    search : ref(""),
+                    quizs : ref([]),
                 }
             },
             computed: {},
-            methods: {},
-            mounted() {},
+            methods: {
+                getAllQuizs() {
+                    $.ajax({
+                        url: `{{ path('ajax_get_all_quiz') }}`,
+                        type: "GET",
+                        success: function(response) {
+                            header.quizs = response;
+                        }
+                    });
+                },
+                redirectSearch() {
+                    let quiz = this.quizs.find(q => q.name === this.search);
+                    if (quiz) {
+                        window.location.replace(`{{ path('quiz_show', { 'id': ' ' }) }}${quiz.id}`)
+                    }
+                },
+            },
+            mounted() {
+                this.getAllQuizs();
+            },
         }).mount('header');
     </script>
     {% block javascripts %}

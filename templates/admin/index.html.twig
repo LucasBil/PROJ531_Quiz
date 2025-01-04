@@ -155,7 +155,7 @@
 
 {% block javascripts %}
     <script>
-        const section = createApp({
+        createApp({
             delimiters: ["${", "}$"],
             setup() {
                 return {
@@ -213,13 +213,13 @@
                 },
                 createQuiz() {
                     $.ajax({
-                        url: "/admin/ajax/quiz/create",
+                        url: `{{ path('ajax_quiz_create') }}`,
                         type: "POST",
                         data: {
                             questions: this.questions,
                             quiz: this.quiz
                         },
-                        success: function(result) {
+                        success: function() {
                             window.location.replace(`{{ path('quizs') }}`);
                         }
                     });
@@ -228,7 +228,7 @@
             mounted() {
                 this.addQuestion();
             }
-        }).mount('#form')
+        }).mount('#form');
     </script>
 {% endblock %}
 

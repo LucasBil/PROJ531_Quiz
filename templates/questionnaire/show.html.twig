@@ -90,7 +90,7 @@
 
     <!--#region Toast Time -->
     {% if quiz.maxTime %}
-        <div class="position-fixed bottom-0 start-0 m-2" id="toastPlacement">
+        <div v-if="write" class="position-fixed bottom-0 start-0 m-2" id="toastPlacement">
             <div class="toast show">
                 <div class="toast-header d-flex justify-content-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
@@ -172,7 +172,7 @@
                     let app = this;
                     this.sended = true;
                     $.ajax({
-                        url: "/ajax/quiz/send",
+                        url: "{{ path('ajax_quiz_send_answer') }}",
                         type: "POST",
                         data: {
                             quiz : {{ quiz.id }},
@@ -183,6 +183,7 @@
                             app.write = false;
                             app.result.note = result.score;
                             app.result.time = result.time;
+                            clearInterval(app.chrono);
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         },
                         error: function () {
