@@ -119,7 +119,7 @@ class AjaxController extends AbstractController
         return new JsonResponse($quizs, Response::HTTP_OK);
     }
 
-    private function getScoreByJson(array $jsonAnswer): int
+    private function getScoreByJson(array $jsonAnswer): float
     {
         $score = 0;
         foreach ($jsonAnswer as $question) {

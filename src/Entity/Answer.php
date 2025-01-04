@@ -32,7 +32,7 @@ class Answer implements JsonSerializable
     private ?Quiz $quiz = null;
 
     #[ORM\Column]
-    private ?int $score = null;
+    private ?float $score = null;
 
     public function getId(): ?int
     {
@@ -87,12 +87,12 @@ class Answer implements JsonSerializable
         return $this;
     }
 
-    public function getScore(): ?int
+    public function getScore(): ?float
     {
         return $this->score;
     }
 
-    public function setScore(int $score): static
+    public function setScore(float $score): static
     {
         $this->score = $score;
 
