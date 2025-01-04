@@ -89,7 +89,7 @@ class AdminController extends AbstractController
             foreach ($question["answers"]??[] as $answer) {
                 $_answer = new PossibleAnswer();
                 $_answer->setValue($answer["sentence"])
-                        ->setTrue($answer["right"])
+                        ->setTrue(filter_var($answer["right"],FILTER_VALIDATE_BOOLEAN))
                         ->setQuestion($_question);
                 $this->doctrine->persist($_answer);
             }
