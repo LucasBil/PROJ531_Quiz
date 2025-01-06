@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
+use App\Enum\Difficulty;
 use App\Repository\QuizRepository;
+use DateInterval;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: QuizRepository::class)]
-class Quiz
+class Quiz implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,38 +21,44 @@ class Quiz
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom du quiz ne peut pas être vide.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "Le nom du quiz ne peut pas dépasser {{ limit }} caractères."
+    )]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATEINTERVAL, nullable: true)]
-    private ?\DateInterval $max_time = null;
+    private ?DateInterval $max_time = null;
 
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $id_user = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'quizzes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Theme $id_theme = null;
+    private ?Theme $theme = null;
 
     /**
      * @var Collection<int, Answer>
      */
-    #[ORM\OneToMany(targetEntity: Answer::class, mappedBy: 'id_quiz')]
+    #[ORM\OneToMany(targetEntity: Answer::class, mappedBy: 'quiz')]
     private Collection $answers;
 
     /**
      * @var Collection<int, Question>
      */
-    #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'id_quiz')]
+    #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'quiz')]
     private Collection $questions;
 
-    #[ORM\Column(length: 255, type: "string")]
-    private ?string $difficulty = null;
+    #[ORM\Column(type: "string", length: 255, nullable: false)]
+    private string $difficulty;
 
     public function __construct()
     {
         $this->answers = new ArrayCollection();
         $this->questions = new ArrayCollection();
+        $this->difficulty = Difficulty::Easy->value;
     }
 
     public function getId(): ?int
@@ -68,38 +78,38 @@ class Quiz
         return $this;
     }
 
-    public function getMaxTime(): ?\DateInterval
+    public function getMaxTime(): ?DateInterval
     {
         return $this->max_time;
     }
 
-    public function setMaxTime(?\DateInterval $max_time): static
+    public function setMaxTime(?DateInterval $max_time): static
     {
         $this->max_time = $max_time;
 
         return $this;
     }
 
-    public function getIdUser(): ?User
+    public function getUser(): ?User
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(?User $id_user): static
+    public function setUser(?User $user): static
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getIdTheme(): ?Theme
+    public function getTheme(): ?Theme
     {
-        return $this->id_theme;
+        return $this->theme;
     }
 
-    public function setIdTheme(?Theme $id_theme): static
+    public function setTheme(?Theme $theme): static
     {
-        $this->id_theme = $id_theme;
+        $this->theme = $theme;
 
         return $this;
     }
@@ -116,7 +126,7 @@ class Quiz
     {
         if (!$this->answers->contains($answer)) {
             $this->answers->add($answer);
-            $answer->setIdQuiz($this);
+            $answer->setQuiz($this);
         }
 
         return $this;
@@ -126,8 +136,8 @@ class Quiz
     {
         if ($this->answers->removeElement($answer)) {
             // set the owning side to null (unless already changed)
-            if ($answer->getIdQuiz() === $this) {
-                $answer->setIdQuiz(null);
+            if ($answer->getQuiz() === $this) {
+                $answer->setQuiz(null);
             }
         }
 
@@ -146,7 +156,7 @@ class Quiz
     {
         if (!$this->questions->contains($question)) {
             $this->questions->add($question);
-            $question->setIdQuiz($this);
+            $question->setQuiz($this);
         }
 
         return $this;
@@ -156,23 +166,55 @@ class Quiz
     {
         if ($this->questions->removeElement($question)) {
             // set the owning side to null (unless already changed)
-            if ($question->getIdQuiz() === $this) {
-                $question->setIdQuiz(null);
+            if ($question->getQuiz() === $this) {
+                $question->setQuiz(null);
             }
         }
 
         return $this;
     }
 
-    public function getDifficulty(): ?string
+    public function getDifficulty(): Difficulty
     {
-        return $this->difficulty;
+        return Difficulty::from($this->difficulty);
     }
 
-    public function setDifficulty(string $difficulty): static
+    public function setDifficulty(Difficulty $difficulty): static
     {
-        $this->difficulty = $difficulty;
+        $this->difficulty = $difficulty->value;
 
         return $this;
+    }
+
+    public function getMaxScore() : int
+    {
+        return (int) array_sum(
+            $this->questions->map(function (Question $question) {
+                return $question->getPoints();
+            })->toArray()
+        );
+    }
+
+    public function getUserAnswers() : array
+    {
+        return $this->answers->map(function (Answer $answer) {
+            return $answer->getUser();
+        })->toArray();
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'id'=> $this->id,
+            'name'=> $this->name,
+            'theme'=> $this->theme,
+            'difficulty'=> $this->difficulty,
+            'creator'=> $this->user,
+            'max_time'=> $this->max_time?->format("%H:%I:%S"),
+            'max_score'=> $this->getMaxScore(),
+            'questions' => $this->questions->toArray(),
+            'answers' => $this->answers->toArray(),
+            'response' => $this->getUserAnswers()
+        );
     }
 }

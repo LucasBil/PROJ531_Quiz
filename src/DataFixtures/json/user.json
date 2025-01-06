@@ -1,0 +1,112 @@
+[
+  {
+    "username" :  "admin",
+    "password" : "admin",
+    "roles" : ["ROLE_ADMIN"]
+  },
+  {
+    "username" :  "lucas",
+    "password" : "azerty",
+    "roles" : []
+  },
+  {
+    "username" :  "user1",
+    "password" : "password1",
+    "roles" : []
+  },
+  {
+    "username" :  "user2",
+    "password" : "password2",
+    "roles" : []
+  },
+  {
+    "username" :  "user3",
+    "password" : "password3",
+    "roles" : []
+  },
+  {
+    "username" :  "user4",
+    "password" : "password4",
+    "roles" : []
+  },
+  {
+    "username" :  "user5",
+    "password" : "password5",
+    "roles" : []
+  },
+  {
+    "username" :  "user6",
+    "password" : "password6",
+    "roles" : []
+  },
+  {
+    "username" :  "user7",
+    "password" : "password7",
+    "roles" : []
+  },
+  {
+    "username" :  "user8",
+    "password" : "password8",
+    "roles" : []
+  },
+  {
+    "username" :  "user9",
+    "password" : "password9",
+    "roles" : []
+  },
+  {
+    "username" :  "user10",
+    "password" : "password10",
+    "roles" : []
+  },
+  {
+    "username" :  "user11",
+    "password" : "password11",
+    "roles" : []
+  },
+  {
+    "username" :  "user12",
+    "password" : "password12",
+    "roles" : []
+  },
+  {
+    "username" :  "user13",
+    "password" : "password13",
+    "roles" : []
+  },
+  {
+    "username" :  "user14",
+    "password" : "password14",
+    "roles" : []
+  },
+  {
+    "username" :  "user15",
+    "password" : "password15",
+    "roles" : []
+  },
+  {
+    "username" :  "user16",
+    "password" : "password16",
+    "roles" : []
+  },
+  {
+    "username" :  "user17",
+    "password" : "password17",
+    "roles" : []
+  },
+  {
+    "username" :  "user18",
+    "password" : "password18",
+    "roles" : []
+  },
+  {
+    "username" :  "user19",
+    "password" : "password19",
+    "roles" : []
+  },
+  {
+    "username" :  "user20",
+    "password" : "password20",
+    "roles" : []
+  }
+]
