@@ -18,10 +18,13 @@ class ScoreController extends AbstractController
     ) {}
 
     public function mean_scores($answers) {
+        if (count($answers) == 0) {
+            return 0;
+        }
+
         $sum = 0;
         foreach ($answers as $answer) {
-            // $sum += $answer->getScore();
-            $sum += $answer["score"];
+            $sum += $answer->getScore();
         }
         return $sum / count($answers);
     }
@@ -30,9 +33,9 @@ class ScoreController extends AbstractController
     #[Route('/score', name: 'app_score')]
     public function index(): Response {
         $user = $this->security->getUser();
-
+        
         $answerRepository = $this->doctrine->getRepository(Answer::class);
-        $user_answers = $answerRepository->getUserAnswersWithJoinedQuiz($user->getId());
+        $user_answers = $answerRepository->getUserAnswersWithJoinedQuiz($user);
 
         return $this->render('score/index.html.twig', [
             'controller_name' => 'ScoreController',
