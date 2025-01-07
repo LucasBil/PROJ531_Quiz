@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-<div class='score d-flex justify-content-around'>
+<div class='score d-flex justify-content-evenly'>
     <div class='score-gauche'>
         <div class='barre-haut d-flex gap-2'>
             <p class="mb-0">Quiz</p>
@@ -27,11 +27,13 @@
                         <p class="mb-0">{{ answer.quiz.name }}</p>
                         <p class="mb-0">
                             {% if answer.time.h > 0 %}
-                                {{ answer.time.format('%h h ') }}
-                            {% elseif answer.time.i > 0 %}
-                                {{ answer.time.format('%I min ') }}
-                            {% else %}
-                                {{ answer.time.format('%S s ') }}
+                                {{ answer.time.format('%h h') }}
+                            {% endif %}
+                            {% if answer.time.i > 0 %}
+                                {{ answer.time.format('%I min') }}
+                            {% endif %}
+                            {% if answer.time.s > 0 %}
+                                {{ answer.time.format('%S s') }}
                             {% endif %}
                         </p>
                     </div>
@@ -43,11 +45,29 @@
             {% endfor %}
             </div>
         </div>
-        <div class="barre-bas">
+        <div class="barre-bas d-flex gap-2">
+            <hr class="flex-grow-1"/>
+            <button>Voir plus ⏷</button>
         </div>
     </div>
-    <div class='score-milieu'>
-
+    <div class="score-milieu d-flex flex-column align-items-center justify-content-center">
+        <h1>Moyenne</h1>
+        <div class="score-moyen d-flex align-items-center justify-content-center">
+            {{ score | round(1, 'floor') }}
+        </div>
+        <p class="mb-0">Temps moyen :</p>
+        <br/>
+        <p class="mb-0">
+            {% if time.h > 0 %}
+                {{ time.format('%h h') }}
+            {% endif %}
+            {% if time.i > 0 %}
+                {{ time.format('%I min') }}
+            {% endif %}
+            {% if time.s > 0 %}
+                {{ time.format('%S s') }}
+            {% endif %}
+        </p>
     </div>
     <div class='score-droite'>
     </div>

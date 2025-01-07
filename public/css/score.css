@@ -1,3 +1,6 @@
+.score {
+    margin-top: 20px;
+}
 .score-gauche {
     width: 30%;
 }
@@ -13,5 +16,30 @@
     color: white;
 }
 .answer-bas {
-    padding: 10px 10px;
+    padding: 10px 20px;
+}
+.barre-bas button {
+    background: none;
+    border: none;
+}
+.score-milieu {
+    background-color: #8c52ff;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+}
+.score-moyen {
+    width: 120px;
+    height: 120px;
+    font-size: 40px;
+    font-weight: bold;
+    border: solid 15px #6ce5e8;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 10px;
+}
+.score-droite {
+    width: 30%;
+    border: solid 2px #8c52ff;
+    border-radius: 10px;
 }

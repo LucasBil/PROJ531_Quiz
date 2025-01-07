@@ -24,9 +24,26 @@ class ScoreController extends AbstractController
 
         $sum = 0;
         foreach ($answers as $answer) {
-            $sum += $answer->getScore();
+            $sum += $answer->getScore() / $answer->getQuiz()->getMaxScore();
         }
-        return $sum / count($answers);
+        return $sum * 10 / count($answers);
+    }
+
+    public function mean_time($answers) {
+        if (count($answers) == 0) {
+            return 0;
+        }
+
+        $defautlDateTime = new \DateTime();
+        $totalTime = new \DateTime();
+
+        foreach ($answers as $answer) {
+            $totalTime->add($answer->getTime());
+        }
+        $seconds = $totalTime->getTimestamp() - $defautlDateTime->getTimestamp();
+        $seconds = (int) ($seconds / count($answers));
+
+        return \DateInterval::createFromDateString("$seconds seconds");
     }
 
 
@@ -40,7 +57,7 @@ class ScoreController extends AbstractController
         return $this->render('score/index.html.twig', [
             'controller_name' => 'ScoreController',
             'score' => $this->mean_scores($user_answers),
-            'time' => "Type à changer dans la bdd",
+            'time' => $this->mean_time($user_answers),
             'answers' => $user_answers,
         ]);
     }
