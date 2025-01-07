@@ -1,0 +1,214 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz: {{ quiz.name }}{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .text-primary-purple {
+            color: #8c52ff;
+        }
+
+        .btn-primary-purple {
+            background-color: #8c52ff;
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% set enumTypes = enum('App\\Enum\\Type') %}
+{% block body %}
+    <!--#region Quiz info -->
+    <div class="d-flex mx-2 mb-2">
+        <div style="height: 75px; width: 75px;" class="bg-primary-purple rounded"></div>
+        <div class="d-flex flex-column justify-content-center gap-1 px-2 my-2
+                border-top border-end border-bottom rounded-end border-black
+                flex-grow-1 fw-bold">
+            <p class="mb-0 fs-6">{{ quiz.name }}</p>
+            <div class="d-flex text-primary-purple gap-3">
+                <div class="d-flex align-items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                    </svg>
+                    <p class="mb-0">{{ quiz.difficulty.value|capitalize }}</p>
+                </div>
+                <div class="d-flex align-items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5" />
+                    </svg>
+                    <p class="mb-0">{{ quiz.theme.name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--#endregion -->
+    <!--#region Result -->
+    <div v-if="!write" id="result" class="my-3 d-flex flex-column gap-2 align-items-center">
+        <hr class="w-100 px-2">
+        <div style="border: 4px solid #8c52ff; width: 75px; height: 75px;" class="rounded-circle d-flex justify-content-center align-items-center">
+            <p class="mb-0 fw-semibold">${result.note}$/{{ quiz.getMaxScore() }}</p>
+        </div>
+        <div style="height: 75px" class="w-100 bg-primary-purple d-flex align-items-center justify-content-center">
+            <p class="mb-0 fw-semibold fs-6">🎉 Temps : ${result.time}$ 🎉</p>
+        </div>
+        <hr class="w-100 px-2">
+    </div>
+    <!--#endregion -->
+    <!--#region Quiz -->
+    <form class="d-flex flex-column gap-2 mb-3">
+        {# Itération sur les questions du quiz #}
+        {% for question in quiz.questions %}
+            <div v-if="answers[{{ loop.index - 1}}]" class="d-flex flex-column align-items-center py-1">
+                <div style="border: 4px solid #8c52ff; width: 45px; height: 45px;" class="rounded-circle d-flex justify-content-center align-items-center">
+                    <p class="mb-0">{{ loop.index }}</p>
+                </div>
+                <p class="fs-6 fw-light mb-3 mt-1">{{ question.statement|capitalize }}</p>
+
+                <div style="width: 75%;" class="d-flex flex-wrap gap-2">
+                    {% if question.type.name == enumTypes.QCM.value %}
+                        {# Itération sur les réponses possibles de chaque question #}
+                        {% for answer in question.possibleAnswers %}
+                            <input v-model="answers[{{ loop.parent.loop.index0 }}].answer[{{ loop.index - 1 }}]"
+                                   type="checkbox" class="btn-check" name="{{ question.id }}" id="{{ answer.id }}" autocomplete="off">
+                            <label style="width: 49%;"
+                                   :class="write?`btn-primary-purple`:{% if answer.isTrue %}`btn-success`{% else %}`btn-danger`{% endif %}"
+                                   class="btn flex-grow-1" for="{{ answer.id }}">{{ answer.value }}</label>
+                        {% endfor %}
+                    {% elseif question.type.name == enumTypes.OPEN.value %}
+                        <div class="input-group">
+                            <input v-model="answers[{{ loop.index - 1 }}].answer"
+                                   type="text" class="form-control" name="{{ question.id }}" placeholder="Réponse">
+                        </div>
+                        <div v-if="!write" class="form-text text-success" id="basic-addon4">Bonne réponse : {{ question.getRightAnswers()[0].value }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        <button v-if="write" @click="send()" :disabled="sended"
+                type="button" class="btn btn-success m-3 w-25 align-self-end">Envoyer</button>
+    </form>
+    <!--#endregion -->
+
+    <!--#region Toast Time -->
+    {% if quiz.maxTime %}
+        <div v-if="write" class="position-fixed bottom-0 start-0 m-2" id="toastPlacement">
+            <div class="toast show">
+                <div class="toast-header d-flex justify-content-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <strong class="me-auto">Temps</strong>
+                </div>
+                <div class="toast-body">
+                    Vous avez {{ quiz.maxTime.format("%hh %imin %ss") }} pour effectuer ce quiz (restant : ${remainingTime}$)
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <!--#endregion -->
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        createApp({
+            delimiters: ["${", "}$"],
+            setup() {
+                const startTime = Date.now();
+                {% if quiz.maxTime %}
+                    let endTime = new Date();
+                    endTime.setHours(endTime.getHours() + {{ quiz.maxTime.h }});
+                    endTime.setMinutes(endTime.getMinutes() + {{ quiz.maxTime.i }});
+                    endTime.setSeconds(endTime.getSeconds() + {{ quiz.maxTime.s }});
+                {% endif %}
+
+                return {
+                    answers : ref([]),
+                    startTime : startTime,
+                    write : ref(true),
+                    sended : ref(false),
+                    result : ref({
+                        note : 0,
+                        time : null,
+                    }),
+                    {% if quiz.maxTime %}
+                        chrono : ref(null),
+                        currentTime : ref(new Date()),
+                        endTime : endTime,
+                    {% endif %}
+                }
+            },
+            computed: {
+                {% if quiz.maxTime %}
+                    remainingTime() {
+                        let time = (this.endTime - this.currentTime)/1000;
+                        const hours = parseInt(time/3600);
+                        const minutes = parseInt(time/60)%60;
+                        const seconds = parseInt(time - (hours*3600) - (minutes*60));
+                        return `${hours}h ${minutes}min ${seconds}s`
+                    }
+                {% endif %}
+            },
+            methods: {
+                initQuiz() {
+                    let quiz = JSON.parse(`{{ quiz.questions.toArray()|json_encode|raw }}`);
+                    quiz = quiz.map(question => ({
+                        ...question,
+                        answer: this.initDefautAnswer(question),
+                    }));
+                    return quiz;
+                },
+                initDefautAnswer(question) {
+                    const type = question.type.name;
+                    let response = [];
+
+                    if (type === `{{ enumTypes.QCM.value }}`) {
+                        response = Array(question.possibleAnswers.length).fill(false);
+                    } else if (type === `{{ enumTypes.OPEN.value }}`) {
+                        response = ""
+                    }
+
+                    return response;
+                },
+                send() {
+                    let app = this;
+                    this.sended = true;
+                    $.ajax({
+                        url: "{{ path('ajax_quiz_send_answer') }}",
+                        type: "POST",
+                        data: {
+                            quiz : {{ quiz.id }},
+                            answer : this.answers,
+                            start : this.startTime,
+                        },
+                        success: function(result) {
+                            app.write = false;
+                            app.result.note = result.score;
+                            app.result.time = result.time;
+                            clearInterval(app.chrono);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        },
+                        error: function () {
+                            app.sended = false;
+                        }
+                    });
+                },
+                {% if quiz.maxTime %}
+                    timer() {
+                        this.chrono = setInterval(() =>{
+                            this.currentTime = new Date();
+                            if (this.currentTime >= this.endTime) {
+                                this.send()
+                                clearInterval(this.chrono);
+                            }
+                        }, 1000);
+                    }
+                {% endif %}
+            },
+            mounted() {
+                this.answers = this.initQuiz();
+                {% if quiz.maxTime %}
+                    this.timer();
+                {% endif %}
+            },
+        }).mount('section');
+    </script>
+{% endblock %}
