@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -14,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -39,13 +40,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Quiz>
      */
-    #[ORM\OneToMany(targetEntity: Quiz::class, mappedBy: 'id_user')]
+    #[ORM\OneToMany(targetEntity: Quiz::class, mappedBy: 'user')]
     private Collection $quizzes;
 
     /**
      * @var Collection<int, Answer>
      */
-    #[ORM\OneToMany(targetEntity: Answer::class, mappedBy: 'id_user')]
+    #[ORM\OneToMany(targetEntity: Answer::class, mappedBy: 'user')]
     private Collection $answers;
 
     public function __construct()
@@ -141,7 +142,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->quizzes->contains($quiz)) {
             $this->quizzes->add($quiz);
-            $quiz->setIdUser($this);
+            $quiz->setUser($this);
         }
 
         return $this;
@@ -151,8 +152,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->quizzes->removeElement($quiz)) {
             // set the owning side to null (unless already changed)
-            if ($quiz->getIdUser() === $this) {
-                $quiz->setIdUser(null);
+            if ($quiz->getUser() === $this) {
+                $quiz->setUser(null);
             }
         }
 
@@ -171,7 +172,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->answers->contains($answer)) {
             $this->answers->add($answer);
-            $answer->setIdUser($this);
+            $answer->setUser($this);
         }
 
         return $this;
@@ -181,11 +182,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->answers->removeElement($answer)) {
             // set the owning side to null (unless already changed)
-            if ($answer->getIdUser() === $this) {
-                $answer->setIdUser(null);
+            if ($answer->getUser() === $this) {
+                $answer->setUser(null);
             }
         }
 
         return $this;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'id' => $this->id,
+            'username' => $this->username,
+            'roles' => $this->roles,
+        );
     }
 }

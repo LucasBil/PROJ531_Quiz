@@ -6,9 +6,10 @@ use App\Repository\ThemeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: ThemeRepository::class)]
-class Theme
+class Theme implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,7 +22,7 @@ class Theme
     /**
      * @var Collection<int, Quiz>
      */
-    #[ORM\OneToMany(targetEntity: Quiz::class, mappedBy: 'id_theme')]
+    #[ORM\OneToMany(targetEntity: Quiz::class, mappedBy: 'theme')]
     private Collection $quizzes;
 
     public function __construct()
@@ -58,7 +59,7 @@ class Theme
     {
         if (!$this->quizzes->contains($quiz)) {
             $this->quizzes->add($quiz);
-            $quiz->setIdTheme($this);
+            $quiz->setTheme($this);
         }
 
         return $this;
@@ -68,11 +69,19 @@ class Theme
     {
         if ($this->quizzes->removeElement($quiz)) {
             // set the owning side to null (unless already changed)
-            if ($quiz->getIdTheme() === $this) {
-                $quiz->setIdTheme(null);
+            if ($quiz->getTheme() === $this) {
+                $quiz->setTheme(null);
             }
         }
 
         return $this;
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return array(
+            'id' => $this->id,
+            'name' => $this->name,
+        );
     }
 }

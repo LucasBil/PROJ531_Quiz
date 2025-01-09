@@ -1,0 +1,260 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Quiz{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <form id="form" method="POST" class="mx-3">
+        <!-- Header QUIZ -->
+        <div class="d-flex flex-column m-2 p-2 gap-2 bg-primary-purple rounded">
+            <div class="align-self-end">
+                <button type="button" class="btn btn-danger d-flex justify-content-center align-items-cente gap-2"
+                    @click="raiseDifficulty()">
+                    <svg v-for="level in (quiz.difficulty+1)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="d-flex gap-2">
+                <div class="d-flex gap-2 flex-grow-1">
+                    <div class="input-group">
+                <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16px" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.243 4.493v7.5m0 0v7.502m0-7.501h10.5m0-7.5v7.5m0 0v7.501m4.501-8.627 2.25-1.5v10.126m0 0h-2.25m2.25 0h2.25" />
+                    </svg>
+                </span>
+                        <input type="text" v-model="quiz.name" class="form-control" placeholder="Nom">
+                    </div>
+                    <div class="input-group">
+                <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="16px" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
+                    </svg>
+                </span>
+                        <input list="suggestions" type="text" v-model="quiz.theme" class="form-control" placeholder="Theme">
+                    </div>
+                    <datalist id="suggestions">
+                        <option v-for="theme in themes" :value="theme.name">
+                    </datalist>
+                </div>
+                <div>
+                    <input v-model="quiz.timeout" type="time" class="form-control" step="1">
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz questions -->
+        <div v-for="question in questions" class="d-flex flex-column m-2 p-2 gap-2 bg-primary-purple rounded">
+            <div class="fluid-container">
+                <div class="row">
+                    <div class="col d-flex align-items-center">
+                        <b>Question :</b>
+                    </div>
+                    <div class="col d-flex gap-4">
+                        <select class="form-select" v-model="question.type">
+                            <option v-for="type in questionTypes" :value="type">${type.name}$</option>
+                        </select>
+                        <div class="d-flex gap-2">
+                            <!-- Rating point -->
+                            <input type="number" v-model="question.rating" min="0" class="form-control" placeholder="0">
+                            <!-- --- -->
+                            <!-- Arrow-up icon -->
+                            <button v-if="questions.indexOf(question) != 0" @click="upQuestion(question)" type="button" class="btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24px" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                                </svg>
+                            </button>
+                            <!-- --- -->
+                            <!-- Arrow-down icon -->
+                            <button v-if="questions.indexOf(question) != questions.length-1" @click="downQuestion(question)" type="button" class="btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24px" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                                </svg>
+                            </button>
+                            <!-- --- -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="text" v-model="question.sentence" class="form-control" placeholder="Quelle est la question ?">
+            <div class="d-flex gap-2">
+                <div class="d-flex flex-wrap gap-2 flex-grow-1 p-2 bg-white rounded">
+                    <!-- Badge answer -->
+                    <div style="width: 45%" v-for="answer in question.answers" class="input-group">
+                        <button class="btn"
+                                :class="answer.right ? 'btn-success' : 'btn-danger'"
+                                type="button">
+                            <svg @click="removeAnswer(question, answer)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24px" stroke="white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                            </svg>
+                        </button>
+                        <input type="text" class="form-control" v-model="answer.sentence">
+                        <button @click="answer.right = !answer.right"
+                                class="btn"
+                                :class="answer.right ? 'btn-success' : 'btn-danger'"
+                                type="button">
+                            <svg v-if="answer.right" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24px" stroke="white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                            <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24px" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- --- -->
+                    <!-- Button More -->
+                    <button style="width: 45%" @click="addAnswer(question)" type="button" class="btn btn-dark d-flex justify-content-center gap-2">
+                        <span>Ajouter</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24px" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                    <!-- --- -->
+                </div>
+                <div class="d-flex align-items-end">
+                    <button @click="removeQuestion(question)"
+                            type="button"
+                            class="btn btn-danger d-flex justify-content-center align-items-center gap-2"
+                            :disabled="questions.length <= 1">
+                        <!-- Trash icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24px" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                        </svg>
+                        <!-- --- -->
+                        <span>Supprimer</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <hr>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <button @click="addQuestion()" type="button" class="btn d-flex justify-content-center gap-2">
+                        <span>Ajouter</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24px" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="col">
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" @click="createQuiz()" class="btn bg-primary-purple" :disabled="!checkSend || sended">Envoyer</button>
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        createApp({
+            delimiters: ["${", "}$"],
+            setup() {
+                return {
+                    questionTypes : ref(JSON.parse(`{{ questionTypes|json_encode|raw }}`)),
+                    themes: ref(JSON.parse(`{{ themes|json_encode|raw }}`)),
+                    questions : ref([]),
+                    quiz : ref({
+                        name: "",
+                        theme: null,
+                        difficulty : 0,
+                        timeout: null,
+                    }),
+                    sended : ref(false)
+                }
+            },
+            computed :{
+                checkSend() {
+                    if (!this.quiz.name || !this.quiz.theme) {
+                        return false;
+                    }
+
+                    for (let index in this.questions) {
+                        let question = this.questions[index];
+                        if (!question.sentence) {
+                            return false;
+                        }
+                        let haveRightAnswer = question.answers.some(answer => answer.right);
+                        if (!haveRightAnswer) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+            },
+            methods: {
+                {% set difficulties = enum('App\\Enum\\Difficulty').cases %}
+                raiseDifficulty() {
+                    this.quiz.difficulty = (this.quiz.difficulty + 1)%{{ difficulties|length }};
+                },
+                addQuestion() {
+                    this.questions.push({
+                        sentence: "",
+                        rating: 0,
+                        type: { id: {{ questionTypes[0].id }}, name: `{{ questionTypes[0].name }}` },
+                        answers: []
+                    })
+                },
+                removeQuestion(question) {
+                    const index = this.questions.indexOf(question);
+                    this.questions.splice(index, 1);
+                },
+                addAnswer(question) {
+                    const index = this.questions.indexOf(question);
+                    this.questions[index].answers.push({
+                        sentence: `${this.questions[index].answers.length}`,
+                        right: false
+                    })
+                },
+                removeAnswer(question, answer) {
+                    const q_index = this.questions.indexOf(question);
+                    const a_index = this.questions[q_index].answers.indexOf(answer);
+                    this.questions[q_index].answers.splice(a_index, 1);
+                },
+                upQuestion(question) {
+                    const index = this.questions.indexOf(question);
+                    let tmp = this.questions[index-1];
+                    this.questions[index-1] = this.questions[index];
+                    this.questions[index] = tmp;
+                },
+                downQuestion(question) {
+                    const index = this.questions.indexOf(question);
+                    let tmp = this.questions[index+1];
+                    this.questions[index+1] = this.questions[index];
+                    this.questions[index] = tmp;
+                },
+                createQuiz() {
+                    let app =  this;
+                    this.sended = true;
+                    $.ajax({
+                        url: `{{ path('ajax_quiz_create') }}`,
+                        type: "POST",
+                        data: {
+                            questions: this.questions,
+                            quiz: this.quiz
+                        },
+                        success: function() {
+                            app.sended = false;
+                            window.location.replace(`{{ path('quizs') }}`);
+                        },
+                        error: function () {
+                            app.sended = false;
+                        }
+                    });
+                },
+            },
+            mounted() {
+                this.addQuestion();
+            }
+        }).mount('#form');
+    </script>
+{% endblock %}
+

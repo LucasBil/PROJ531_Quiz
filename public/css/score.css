@@ -1,0 +1,47 @@
+.score {
+    margin-top: 20px;
+}
+.score-gauche {
+    width: 30%;
+}
+.answer {
+    border: solid 2px #8c52ff;
+    border-radius: 30px;
+}
+.answer-haut {
+    background-color: #8c52ff;
+    border: solid 2px #8c52ff;
+    border-radius: 50px;
+    padding: 10px 20px;
+    color: white;
+}
+.answer-bas {
+    padding: 10px 20px;
+}
+.barre-bas button {
+    background: none;
+    border: none;
+}
+.score-milieu {
+    max-height: 350px;
+    background-color: #8c52ff;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+}
+.score-moyen {
+    width: 120px;
+    height: 120px;
+    font-size: 40px;
+    font-weight: bold;
+    border: solid 15px #6ce5e8;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 10px;
+}
+.score-droite {
+    max-height: 350px;
+    width: 30%;
+    border: solid 2px #8c52ff;
+    border-radius: 10px;
+}
