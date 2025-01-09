@@ -20,9 +20,9 @@
             </svg>
         </div>
         {% if answers|length > 0 %}
-            <div class="answers d-flex flex-column gap-2">
+        <div class="answers d-flex flex-column gap-2">
             {% for answer in answers %}
-                <div class="answer">
+                <div class="answer {% if loop.index > 3 %}hidden-answer d-none{% endif %}">
                     <div class="answer-haut d-flex justify-content-between">
                         <p class="mb-0">{{ answer.quiz.name }}</p>
                         <p class="mb-0">
@@ -43,13 +43,15 @@
                     </div>
                 </div>
             {% endfor %}
-            </div>
-        <div class="barre-bas d-flex gap-2">
-            <hr class="flex-grow-1"/>
-            <button>Voir plus ⏷</button>
         </div>
         {% else %}
             <p class="mb-0 fst-italic text-center">Aucun quiz répondu</p>
+        {% endif %}
+        {% if answers|length > 3 %}
+            <div class="barre-bas d-flex gap-2">
+                <hr class="flex-grow-1"/>
+                <button id="showMoreButton">Voir plus ⏷</button>
+            </div>
         {% endif %}
     </div>
     <div class="score-milieu d-flex flex-column align-items-center justify-content-center">
@@ -82,6 +84,7 @@
 {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    {# Graphique #}
     <script>
         const ctx = document.getElementById('scoreChart');
 
@@ -110,6 +113,25 @@
                         max: 10
                     }
                 }
+            }
+        });
+    </script>
+
+    {# Bouton voir plus #}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const showMoreButton = document.getElementById('showMoreButton');
+            const hiddenAnswers = document.querySelectorAll('.hidden-answer');
+
+            if (showMoreButton) {
+                showMoreButton.addEventListener('click', () => {
+                    hiddenAnswers.forEach(answer => answer.classList.toggle('d-none'));
+                    if (showMoreButton.textContent.includes('Voir plus')) {
+                        showMoreButton.textContent = 'Voir moins ⏶';
+                    } else {
+                        showMoreButton.textContent = 'Voir plus ⏷';
+                    }
+                });
             }
         });
     </script>
