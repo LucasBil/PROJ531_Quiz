@@ -149,7 +149,7 @@
             </div>
         </div>
 
-        <button type="button" @click="createQuiz()" class="btn bg-primary-purple">Envoyer</button>
+        <button type="button" @click="createQuiz()" class="btn bg-primary-purple" :disabled="!checkSend || sended">Envoyer</button>
     </form>
 {% endblock %}
 
@@ -167,8 +167,28 @@
                         theme: null,
                         difficulty : 0,
                         timeout: null,
-                    })
+                    }),
+                    sended : ref(false)
                 }
+            },
+            computed :{
+                checkSend() {
+                    if (!this.quiz.name || !this.quiz.theme) {
+                        return false;
+                    }
+
+                    for (let index in this.questions) {
+                        let question = this.questions[index];
+                        if (!question.sentence) {
+                            return false;
+                        }
+                        let haveRightAnswer = question.answers.some(answer => answer.right);
+                        if (!haveRightAnswer) {
+                            return false;
+                        }
+                    }
+                    return true;
+                },
             },
             methods: {
                 {% set difficulties = enum('App\\Enum\\Difficulty').cases %}
@@ -212,6 +232,8 @@
                     this.questions[index] = tmp;
                 },
                 createQuiz() {
+                    let app =  this;
+                    this.sended = true;
                     $.ajax({
                         url: `{{ path('ajax_quiz_create') }}`,
                         type: "POST",
@@ -220,7 +242,11 @@
                             quiz: this.quiz
                         },
                         success: function() {
+                            app.sended = false;
                             window.location.replace(`{{ path('quizs') }}`);
+                        },
+                        error: function () {
+                            app.sended = false;
                         }
                     });
                 },
