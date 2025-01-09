@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Answer;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -30,6 +31,16 @@ class AnswerRepository extends ServiceEntityRepository
     //            ->getResult()
     //        ;
     //    }
+
+    public function getUserAnswersWithJoinedQuiz(User $user) {
+        return $this->createQueryBuilder('a')
+            ->join('a.quiz', 'q')
+            ->where('a.user = :userId')
+            ->setParameter('userId', $user->getId())
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     //    public function findOneBySomeField($value): ?Answer
     //    {

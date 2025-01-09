@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes statistiques{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="css/score.css" type="text/css">
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+<div class='score d-flex justify-content-evenly'>
+    <div class='score-gauche'>
+        <div class='barre-haut d-flex gap-2'>
+            <p class="mb-0">Quiz</p>
+            <hr class="flex-grow-1"/>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="16">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
+            </svg>
+        </div>
+        {% if answers|length > 0 %}
+        <div class="answers d-flex flex-column gap-2">
+            {% for answer in answers %}
+                <div class="answer {% if loop.index > 3 %}hidden-answer d-none{% endif %}">
+                    <div class="answer-haut d-flex justify-content-between">
+                        <p class="mb-0">{{ answer.quiz.name }}</p>
+                        <p class="mb-0">
+                            {% if answer.time.h > 0 %}
+                                {{ answer.time.format('%h h') }}
+                            {% endif %}
+                            {% if answer.time.i > 0 %}
+                                {{ answer.time.format('%I min') }}
+                            {% endif %}
+                            {% if answer.time.s > 0 %}
+                                {{ answer.time.format('%S s') }}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="answer-bas d-flex justify-content-between">
+                        <p class="mb-0">Date : {{ answer.datetime|date('d/m/Y') }}</p>
+                        <p class="mb-0">Score : {{ answer.score }}/{{ answer.quiz.getMaxScore() }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p class="mb-0 fst-italic text-center">Aucun quiz répondu</p>
+        {% endif %}
+        {% if answers|length > 3 %}
+            <div class="barre-bas d-flex gap-2">
+                <hr class="flex-grow-1"/>
+                <button id="showMoreButton">Voir plus ⏷</button>
+            </div>
+        {% endif %}
+    </div>
+    <div class="score-milieu d-flex flex-column align-items-center justify-content-center">
+        <h1>Moyenne</h1>
+        <div class="score-moyen d-flex align-items-center justify-content-center">
+            {{ score | round(1, 'floor') }}
+        </div>
+        {% if time is not null %}
+            <p class="mb-0">Temps moyen :</p>
+            <br/>
+            <p class="mb-0">
+                {% if time.h > 0 %}
+                    {{ time.format('%h h') }}
+                {% endif %}
+                {% if time.i > 0 %}
+                    {{ time.format('%I min') }}
+                {% endif %}
+                {% if time.s > 0 %}
+                    {{ time.format('%S s') }}
+                {% endif %}
+            </p>
+        {% endif %}
+    </div>
+    <div class='score-droite d-flex align-items-center justify-content-center'>
+        <canvas id="scoreChart"></canvas>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {# Graphique #}
+    <script>
+        const ctx = document.getElementById('scoreChart');
+
+        const scores = {{ scoresForChart|raw }};
+
+        const labels = scores.map(score => score.date);
+        const data = scores.map(score => score.value);
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Derniers scores',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: 10
+                    }
+                }
+            }
+        });
+    </script>
+
+    {# Bouton voir plus #}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const showMoreButton = document.getElementById('showMoreButton');
+            const hiddenAnswers = document.querySelectorAll('.hidden-answer');
+
+            if (showMoreButton) {
+                showMoreButton.addEventListener('click', () => {
+                    hiddenAnswers.forEach(answer => answer.classList.toggle('d-none'));
+                    if (showMoreButton.textContent.includes('Voir plus')) {
+                        showMoreButton.textContent = 'Voir moins ⏶';
+                    } else {
+                        showMoreButton.textContent = 'Voir plus ⏷';
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}
