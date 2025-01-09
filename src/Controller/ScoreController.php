@@ -31,7 +31,7 @@ class ScoreController extends AbstractController
 
     public function mean_time($answers) {
         if (count($answers) == 0) {
-            return 0;
+            return null;
         }
 
         $defautlDateTime = new \DateTime();
@@ -44,6 +44,17 @@ class ScoreController extends AbstractController
         $seconds = (int) ($seconds / count($answers));
 
         return \DateInterval::createFromDateString("$seconds seconds");
+    }
+
+    public function scores_for_chart($answers) {
+        $scores = [];
+        foreach ($answers as $answer) {
+            $scores[] = [
+                'value' => $answer->getScore() / $answer->getQuiz()->getMaxScore() * 10,
+                'date' => $answer->getDateTime()->format('m-d'),
+            ];
+        }
+        return $scores;
     }
 
 
@@ -59,6 +70,7 @@ class ScoreController extends AbstractController
             'score' => $this->mean_scores($user_answers),
             'time' => $this->mean_time($user_answers),
             'answers' => $user_answers,
+            'scoresForChart' => json_encode($this->scores_for_chart($user_answers)),
         ]);
     }
 }
