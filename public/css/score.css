@@ -23,7 +23,7 @@
     border: none;
 }
 .score-milieu {
-    max-height: 300px;
+    max-height: 350px;
     background-color: #8c52ff;
     border-radius: 20px;
     padding: 20px;
@@ -40,7 +40,7 @@
     margin: 10px;
 }
 .score-droite {
-    max-height: 300px;
+    max-height: 350px;
     width: 30%;
     border: solid 2px #8c52ff;
     border-radius: 10px;
