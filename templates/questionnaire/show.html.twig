@@ -181,7 +181,7 @@
                         },
                         success: function(result) {
                             app.write = false;
-                            app.result.note = result.score;
+                            app.result.note = Math.round(result.score * 100) / 100;
                             app.result.time = result.time;
                             clearInterval(app.chrono);
                             window.scrollTo({ top: 0, behavior: 'smooth' });
